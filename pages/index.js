@@ -79,7 +79,14 @@ export default function Home() {
           <div className="hero__imagewrap">
             <img className="flourish" src="/flourish.svg" alt="Flourish" />
             <Parallax offset={16}>
-              
+              <Image
+                src="/CassieMike-1167-d9b5c0d8.webp"
+                width="1024"
+                height="1534"
+                alt="Cassie &amp; Mike"
+                placeholder="blur"
+                blurDataURL="/CassieMike-1167-d9b5c0d8-blur.webp"
+              />
             </Parallax>
           </div>
         </section>
@@ -124,7 +131,13 @@ export default function Home() {
                           <span className="links__cta">Start your story</span>
                         </header>
                         <div className="links__imgwrap">
-                          
+                          <Image
+                            className="links__img"
+                            src="/links-engagement.webp"
+                            alt="Engagement"
+                            width="560"
+                            height="680"
+                          />
                         </div>
                       </a>
                       <a className="links__action" href="#">
@@ -133,7 +146,13 @@ export default function Home() {
                           <span className="links__cta">Begin your journey</span>
                         </header>
                         <div className="links__imgwrap">
-                          
+                          <Image
+                            className="links__img"
+                            src="/links-wedding.webp"
+                            alt="Wedding"
+                            width="560"
+                            height="680"
+                          />
                         </div>
                       </a>
                       <a className="links__action" href="#">
@@ -144,7 +163,13 @@ export default function Home() {
                           </span>
                         </header>
                         <div className="links__imgwrap">
-                          
+                          <Image
+                            className="links__img"
+                            src="/links-family.webp"
+                            alt="Family"
+                            width="560"
+                            height="680"
+                          />
                         </div>
                       </a>
                     </div>
@@ -177,7 +202,13 @@ export default function Home() {
             <h3>Start telling your story today.</h3>
             <button className="invert">Book your session</button>
           </div>
-          
+          <Image
+            src="/JS-17-25026538.webp"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="right"
+            alt="Reach out to us"
+          />
         </section>
       </main>
 
