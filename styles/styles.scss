@@ -36,16 +36,19 @@ h1, h2, h3 {
 }
 
 h3 {
-  font-size: clamp(2em, 4vw, 3em);
+  font-size: clamp(1.75em, 4vw, 2.75em);
   margin-bottom: 1.5rem;
 }
 
 .siteheader {
   position: relative;
-  gap: 2rem;
+  gap: 1rem;
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1.5rem;
   min-height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &::after {
     content: '';
@@ -56,10 +59,12 @@ h3 {
     width: 100%;
     background: linear-gradient(90deg, transparent 70%, var(--dark));
     z-index: -1;
+    opacity: 0;
   }
 
   button {
     margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -186,6 +191,7 @@ button {
   max-width: 50rem;
   text-align: center;
   margin-left: auto;
+  padding-bottom: 2rem;
 
   p {
     max-width: 60ch;
@@ -261,7 +267,7 @@ button {
 }
 
 .container {
-  padding: 2rem 20vw;
+  padding: 2rem;
 }
 
 .about {
@@ -469,6 +475,10 @@ cite {
   transition: background 0.6s ease-in-out;
 }
 
+.about .fade-in {
+  padding-bottom: 1.5rem;
+}
+
 @media screen and (min-width: 1200px) {
 
   .hero {
@@ -496,6 +506,24 @@ cite {
 
   .hero__text {
     margin-top: 10vh;
+  }
+
+  .siteheader {
+    flex-direction: row;
+    gap: 2rem;
+    padding-bottom: .25rem;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  .siteheader button {
+    margin-right: 0;
+  }
+
+  .container {
+    padding: 2rem 20vw;
   }
 
 }

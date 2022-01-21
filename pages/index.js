@@ -21,7 +21,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <header className="siteheader px-2 flex">
+        <header className="siteheader px-2">
           <img
             className="sitelogo"
             src="/hando-logo.webp"
@@ -75,9 +75,7 @@ export default function Home() {
               cherish, providing you with keepsakes to pass on for generations
               to come.
             </p>
-            <Parallax offset={16}>
               <button>See what we can do</button>
-            </Parallax>
           </div>
           <div className="hero__imagewrap">
             <img className="flourish" src="/flourish.svg" alt="Flourish" />
@@ -198,6 +196,7 @@ export default function Home() {
             src="/JS-17-25026538.webp"
             layout="fill"
             objectFit="cover"
+            objectPosition="right"
             alt="Reach out to us"
           />
         </section>
