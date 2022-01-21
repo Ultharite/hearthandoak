@@ -129,10 +129,7 @@ export default function Home() {
                     </h3>
                     <div className="links">
                       <a className="links__action" href="#">
-                        <header>
-                          <span className="links__title">Engagement</span>
-                          <span className="links__cta">Start your story</span>
-                        </header>
+                        
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -142,12 +139,13 @@ export default function Home() {
                             height="680"
                           />
                         </div>
+                        <header className="links__header">
+                          <span className="links__title">Engagement</span>
+                          <span className="links__cta">Start your story</span>
+                        </header>
                       </a>
                       <a className="links__action" href="#">
-                        <header>
-                          <span className="links__title">Wedding</span>
-                          <span className="links__cta">Begin your journey</span>
-                        </header>
+                        
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -157,14 +155,13 @@ export default function Home() {
                             height="680"
                           />
                         </div>
+                        <header className="links__header">
+                          <span className="links__title">Wedding</span>
+                          <span className="links__cta">Begin your journey</span>
+                        </header>
                       </a>
                       <a className="links__action" href="#">
-                        <header>
-                          <span className="links__title">Family</span>
-                          <span className="links__cta">
-                            The journey continues
-                          </span>
-                        </header>
+                        
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -174,6 +171,12 @@ export default function Home() {
                             height="680"
                           />
                         </div>
+                        <header className="links__header">
+                          <span className="links__title">Family</span>
+                          <span className="links__cta">
+                            The journey continues
+                          </span>
+                        </header>
                       </a>
                     </div>
                   </div>
