@@ -10,6 +10,11 @@
   font-size: 16px;
 }
 
+* {
+  will-change: transform !important;
+  backface-visibility: visible !important;
+}
+
 body {
   margin: 0;
   background-color: var(--light);
