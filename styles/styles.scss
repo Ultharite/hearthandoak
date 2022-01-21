@@ -10,15 +10,10 @@
   font-size: 16px;
 }
 
-* {
-  will-change: transform !important;
-  backface-visibility: visible !important;
-}
-
 body {
   margin: 0;
   background-color: var(--light);
-  background-image: url('/nnnoise2.svg');
+//  background-image: url('/nnnoise2.svg');
 }
 
 * {
@@ -303,6 +298,7 @@ button {
     font-size: 8em;
     opacity: 0.25;
     font-family: var(--display);
+    display: none;
   }
 
   h2 {
@@ -350,6 +346,7 @@ h2 {
 .links__header,
 .links__imgwrap {
   grid-area: 1 / -1;
+  position: relative;
 }
 
 .links__header {
@@ -358,6 +355,7 @@ h2 {
   justify-content: flex-end;
   padding: 1rem;
   background: linear-gradient(transparent 50%, var(--dark));
+  z-index: 2;
 }
 
 .links__title {
@@ -508,4 +506,14 @@ img {
       transform: scale3d(1.05, 1.05, 1.05);
     }
   }
+
+  .about::before {
+    display: block;
+  }
+}
+
+
+.imagefix {
+  display: block;
+  max-width: 100%;
 }

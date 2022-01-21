@@ -8,11 +8,7 @@ import { useState, useRef, useLayoutEffect } from 'react'
 
 const Parallax = ({ children, offset = 50, stiffness = 100, damping = 64 }) => {
 
-  return (
-    <div>{children}</div>
-  )
-
-/*
+  
   const [elementTop, setElementTop] = useState(0)
   const [clientHeight, setClientHeight] = useState(0)
   const ref = useRef(null)
@@ -48,7 +44,7 @@ const Parallax = ({ children, offset = 50, stiffness = 100, damping = 64 }) => {
     >
       {children}
     </motion.div>
-  ) */
+  )
 }
 
 export default Parallax

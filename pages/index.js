@@ -2,6 +2,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+//import Image from '../components/imagefix'
+
 import { useState } from 'react'
 
 import Parallax from '../components/parallax/parallax'
