@@ -52,12 +52,15 @@ export default function Home() {
 
         <section className="hero grid">
           <div className="hero__text">
-
-                <span className={`hero__title`}>
+            <InView>
+              {({ inView, ref, entry }) => (
+                <span ref={ref} className={`hero__title ${inView}`}>
                   <span>Each</span> <span>MOMENT</span>
                   <br />
                   <span>tells</span> <span>a</span> <span>STORY.</span>
                 </span>
+              )}
+            </InView>
 
             <p>
               <em>Capturing the moment is what we do.</em>
@@ -88,12 +91,20 @@ export default function Home() {
           </div>
         </section>
 
-        
-              <section className="about container" >
+        <InView
+          threshold="0.5"
+          onChange={(inView) => {
+            inView === true ? setBackground('dark') : setBackground('light')
+          }}
+        >
+          {({ inView, ref, entry }) => {
+            return (
+              <section className="about container" ref={ref}>
                 <Parallax offset={-32}>
                   <div>
-                    
-                        <div className={`fade-in`} >
+                    <InView threshold="0.1" triggerOnce="true">
+                      {({ inView, ref, entry }) => (
+                        <div className={`fade-in ${inView}`} ref={ref}>
                           <h2 className="linewidth">
                             HEARTH &amp; OAK PHOTOGRAPHY COMPANY
                           </h2>
@@ -108,6 +119,8 @@ export default function Home() {
                             the most important moments of your day.
                           </p>
                         </div>
+                      )}
+                    </InView>
                     <h3 className="text-align-right">
                       CLIENT STORIES &amp; JOURNIES ::
                     </h3>
@@ -164,12 +177,24 @@ export default function Home() {
                 </Parallax>
               </section>
             )
+          }}
+        </InView>
 
-        
-              <blockquote className="p-2 container">
+        <InView
+          threshold="0.1"
+          onChange={(inView) => {
+            inView === true ? setBackground('light') : setBackground('dark')
+          }}
+        >
+          {({ inView, ref, entry }) => {
+            return (
+              <blockquote className="p-2 container" ref={ref}>
                 &ldquo;I would find you in any lifetime.&rdquo;
                 <cite>&mdash; Kanye West</cite>
               </blockquote>
+            )
+          }}
+        </InView>
 
         <section className="bottomcta">
           <div className="container">
