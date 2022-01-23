@@ -1,3 +1,5 @@
+@use '../components/drawer/drawer.scss' as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Spectral:ital,wght@0,400;0,700;1,400;1,700');
 
 :root {
@@ -13,6 +15,7 @@
 body {
   margin: 0;
   background-color: var(--light);
+  -webkit-font-smoothing: antialiased;
 //  background-image: url('/nnnoise2.svg');
 }
 
@@ -516,4 +519,78 @@ img {
 .imagefix {
   display: block;
   max-width: 100%;
+}
+
+.btn-close {
+  aspect-ratio: 1;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 0.5rem;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+
+
+html, body, .site-main {
+  overflow-x: hidden;
+}
+
+@media screen and (min-width: 1244px) {
+
+  .cursor {
+  //width: 8rem;
+  //height: 8rem;
+  //background: #fff;
+  display: block;
+  z-index: 999999;
+  position: absolute;
+  mix-blend-mode: difference;
+  border-radius: 50%;
+  pointer-events: none;
+  transition-delay: 0s, 0.3s;
+  opacity: 0;
+
+  &::after {
+    content: '';
+      width: 8rem;
+      height: 8rem;
+      background: #fff;
+      position: absolute;
+      left: calc(50% - 4rem);
+      top: calc(50% - 4rem);
+      opacity: 1;
+      transition: all 0.1s ease-in;
+      transform-origin: center center;
+      border-radius: 50%;
+      mix-blend-mode: difference;
+  }
+
+  &.true {
+    opacity: 1;
+    transition: transform 0.05s linear, opacity 0.3s;
+    transition-delay: 0s, 0.3s;
+  }
+
+  &.overButton-true {
+    background: none;
+
+    &::after {
+      width: 1rem;
+      height: 1rem;
+      left: calc(50% - 0.5rem);
+      top: calc(50% - 0.5rem);
+      opacity: 1;
+    }
+  }
+}
+
 }

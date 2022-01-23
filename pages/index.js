@@ -1,17 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
 import Image from 'next/image'
-
-//import Image from '../components/imagefix'
-
-import { useState } from 'react'
-
+import Drawer from '../components/drawer/drawer'
 import Parallax from '../components/parallax/parallax'
-
 import { InView } from 'react-intersection-observer'
+import { GlobalContext } from '../pages/_layout'
+import React from 'react'
+import Button from '../components/button/button'
+import { useState } from 'react'
+import useMouse from '@react-hook/mouse-position'
 
 export default function Home() {
   const [background, setBackground] = useState('light')
+
+  const { toggleDrawer, overButton, setOverButton } =
+    React.useContext(GlobalContext)
+
+  const ref = React.useRef(null)
+
+  const mouse = useMouse(ref)
+
+  const styles = {
+    transform: `translate(${mouse.pageX}px, ${mouse.pageY}px)`,
+  }
 
   return (
     <div className={`bg ${background}`}>
@@ -24,7 +35,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Drawer title="Book a session">
+        <p className="linewidth">
+          So... you made it to the contact page. That&apos;s wonderful and
+          exciting! Simply fill out the form below and we will promptly get back
+          to you so we can start discussing all of the details for your big day,
+          and start making memories together. We are looking forward to hearing
+          from you so don&apos;t be shy, drop us a line.
+        </p>
+      </Drawer>
+
+      <main className="site-main" ref={ref}>
+        <div
+          className={`cursor ${mouse.isOver} overButton-${overButton}`}
+          style={styles}
+        ></div>
         <header className="siteheader px-2">
           <img
             className="sitelogo"
@@ -50,9 +75,13 @@ export default function Home() {
               </li>
             </ul>
           </nav>
-          <button data-label="Book Your Session" className="btn-contact">
+          <Button
+            data-label="Book Your Session"
+            className="btn-contact"
+            onClick={toggleDrawer}
+          >
             Book your session
-          </button>
+          </Button>
         </header>
 
         <section className="hero grid">
@@ -79,7 +108,7 @@ export default function Home() {
               cherish, providing you with keepsakes to pass on for generations
               to come.
             </p>
-            <button>See what we can do</button>
+            <Button>See what we can do</Button>
           </div>
           <div className="hero__imagewrap">
             <img className="flourish" src="/flourish.svg" alt="Flourish" />
@@ -131,7 +160,6 @@ export default function Home() {
                     </h3>
                     <div className="links">
                       <a className="links__action" href="#">
-                        
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -147,7 +175,6 @@ export default function Home() {
                         </header>
                       </a>
                       <a className="links__action" href="#">
-                        
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -163,7 +190,6 @@ export default function Home() {
                         </header>
                       </a>
                       <a className="links__action" href="#">
-                        
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -208,7 +234,7 @@ export default function Home() {
           <div className="container">
             <h2>Reach Out To Us</h2>
             <h3>Start telling your story today.</h3>
-            <button className="invert">Book your session</button>
+            <Button className="invert">Book your session</Button>
           </div>
           <Image
             src="/JS-17-25026538.webp"

@@ -1,0 +1,59 @@
+.drawer {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  overflow-x: hidden;
+  animation: drawer-bg 0.3s ease-in-out both;
+}
+
+.drawer__inner {
+  position: relative;
+  right: -100vw;
+  max-width: min(50rem, 90vw);
+  margin-left: auto;
+  background: var(--light);
+  height: 100%;
+  padding: 2rem;
+  box-shadow: -8px 8px 8px rgba(0,0,0,0.1);
+  animation: drawer-in 0.6s cubic-bezier(0.77, 0, 0.175, 1) both;
+  clip-path: polygon(0.5rem 0, 100% 0, 100% 100%, 0 100%, 0 0.5rem);
+  border-left: 2px solid #fff;
+}
+
+.drawer__header {
+  border-bottom: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+
+  h2 {
+    font-size: clamp(2em, 4vw, 3.5em);
+    margin: 0;
+  }
+}
+
+.drawer.true .drawer__inner {
+  right: 0;
+  transition: all 0.3s;
+}
+
+@keyframes drawer-bg {
+  0% {
+    background: rgba(0,0,0,0);
+  }
+
+  100% {
+    background: rgba(0,0,0,0.5);
+  }
+}
+
+@keyframes drawer-in {
+  0% {
+    right: -100vw;
+  }
+
+  100% {
+    right: 0vw;
+  }
+}
