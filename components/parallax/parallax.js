@@ -4,7 +4,7 @@ import {
   useTransform,
   useSpring,
 } from 'framer-motion'
-import { useState, useRef, useLayoutEffect } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
 
 const Parallax = ({ children, offset = 50, stiffness = 100, damping = 64 }) => {
 
@@ -21,6 +21,7 @@ const Parallax = ({ children, offset = 50, stiffness = 100, damping = 64 }) => {
 
   const y = useSpring(yRange, { stiffness: stiffness, damping: damping })
 
+
   useLayoutEffect(() => {
     const element = ref.current
     const elementParent = ref.current.elementParent
@@ -29,12 +30,12 @@ const Parallax = ({ children, offset = 50, stiffness = 100, damping = 64 }) => {
         element.offsetHeight ||
           setClientHeight(window.innerHeight)
       )
-      console.log(elementParent)
     }
     onResize()
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [ref])
+
   return (
     <motion.div
       className="motion"

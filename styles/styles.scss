@@ -8,15 +8,17 @@
 
   --light: #ede9e6;
   --dark: #0d0d0c;
+  --grey: #383834;
   font-family: 'Spectral', serif;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   background-color: var(--light);
   -webkit-font-smoothing: antialiased;
-//  background-image: url('/nnnoise2.svg');
+  //background-image: url('/wood.webp');
 }
 
 * {
@@ -62,7 +64,7 @@ h3 {
     left: 0;
     height: 1px;
     width: 100%;
-    background: linear-gradient(90deg, transparent 70%, var(--dark));
+    background: linear-gradient(90deg, transparent 77%, var(--dark));
     z-index: -1;
     opacity: 0;
   }
@@ -89,6 +91,10 @@ h3 {
   //desktop
 }
 
+.gap-2 {
+  gap: 2rem;
+}
+
 .p-2 {
   padding: 2rem;
 }
@@ -103,7 +109,7 @@ h3 {
   padding-bottom: 2rem;
 }
 
-button {
+button, .button {
   padding: 0.875em 1em;
   border: 1px solid var(--dark);
   background: #ede9e6;
@@ -112,6 +118,7 @@ button {
   font-weight: 400;
   font-family: var(--basefont);
   text-transform: uppercase;
+  text-decoration: none;
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
@@ -121,6 +128,9 @@ button {
   background-position: 100% 0%;
   background-repeat: no-repeat;
   cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  color: var(--dark);
 
   &:hover {
     color: var(--light);
@@ -147,8 +157,6 @@ button {
   height: 100%;
   display: none;
 
-  //desktop
-
   li {
     position: relative;
     display: flex;
@@ -166,12 +174,28 @@ button {
     }
   }
 
+  li.parent::after {
+    content: '>';
+    transform: none;
+    font-family: monospace;
+    font-weight: 700;
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 1.1;
+    margin-left: -4px;
+    margin-right: 4px;
+  }
+
   a {
     color: var(--dark);
     text-decoration: none;
     position: relative;
     font-family: var(--display);
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 1.45vw, 1.25rem);
 
     &::after {
       content: '';
@@ -500,6 +524,11 @@ img {
     padding: 2rem 20vw;
   }
 
+  .container-xl {
+    margin: 0 auto;
+    max-width: 2100px;
+  }
+
   .links__action {
     img {
       transition: all 0.6s ease-in-out;
@@ -541,7 +570,15 @@ img {
 
 
 html, body, .site-main {
-  overflow-x: hidden;
+  //overflow-x: hidden;
+}
+
+html {
+  //overflow-y: scroll;
+}
+
+.site-main {
+  min-height: 100vh;
 }
 
 @media screen and (min-width: 1244px) {
@@ -556,7 +593,6 @@ html, body, .site-main {
   mix-blend-mode: difference;
   border-radius: 50%;
   pointer-events: none;
-  transition-delay: 0s, 0.3s;
   opacity: 0;
 
   &::after {
@@ -568,7 +604,7 @@ html, body, .site-main {
       left: calc(50% - 4rem);
       top: calc(50% - 4rem);
       opacity: 1;
-      transition: all 0.1s ease-in;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       transform-origin: center center;
       border-radius: 50%;
       mix-blend-mode: difference;
@@ -576,12 +612,13 @@ html, body, .site-main {
 
   &.true {
     opacity: 1;
-    transition: transform 0.05s linear, opacity 0.3s;
+    transition: transform 0.05s linear, opacity 0.3s, background 0s;
     transition-delay: 0s, 0.3s;
   }
 
   &.overButton-true {
     background: none;
+    mix-blend-mode: multiply;
 
     &::after {
       width: 1rem;
@@ -589,8 +626,149 @@ html, body, .site-main {
       left: calc(50% - 0.5rem);
       top: calc(50% - 0.5rem);
       opacity: 1;
+      background: #000;
+      border: 1px solid #fff;
     }
   }
 }
 
+}
+
+.page {
+  transition: background 0.6s ease-in-out, color 0.6s ease-in-out;
+}
+
+.page .links {
+  transition: opacity 0.3s;
+}
+
+.page.light {
+  transition: background 0.1s ease-in-out;
+}
+
+.page.dark {
+  background: var(--dark);
+  color: var(--light);
+}
+
+.page.dark .links {
+  opacity: 0;
+}
+
+.page .header {
+  text-align: center;
+}
+
+.page .header h1 {
+  font-size: clamp(3em, 4vw, 5em);
+  border-bottom: 2px solid var(--dark);
+  margin-bottom: 1.5rem;
+}
+
+.page .header p {
+  font-size: clamp(1em, 4vw, 1.5em);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.portfolio-section.container {
+  min-height: 150vh;
+  //height: 100vh;
+  position: relative;
+  padding-top: 50vh;
+  padding-bottom: 4rem;
+}
+
+.portfolio-header {
+  position: sticky;
+  top: 2rem;
+  display: block;
+  align-self: flex-start;
+}
+
+.portfolio-header h2 {
+  font-size: clamp(3em, 4vw, 5em);
+  margin-bottom: 0;
+  z-index: 9999;
+  position: relative;
+  top: 0;
+}
+
+.portfolio-header p {
+  font-size: clamp(1em, 4vw, 1.5em);
+  z-index: 0;
+  position: relative;
+}
+
+.portfolio-photos {
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio-title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 1rem, 0);
+  will-change: transform;
+  transition: opacity 0.3s ease-out;
+  
+}
+
+.portfolio-section.true .portfolio-title span {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  transition: opacity 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &:nth-of-type(1) { transition-delay: 0.1s; }
+  &:nth-of-type(2) { transition-delay: 0.2s; }
+  &:nth-of-type(3) { transition-delay: 0.3s; }
+  &:nth-of-type(4) { transition-delay: 0.4s; }
+  &:nth-of-type(5) { transition-delay: 0.5s; }
+  &:nth-of-type(6) { transition-delay: 0.6s; }
+  &:nth-of-type(7) { transition-delay: 0.7s; }
+  &:nth-of-type(8) { transition-delay: 0.8s; }
+  &:nth-of-type(9) { transition-delay: 0.9s; }
+  &:nth-of-type(10) { transition-delay: 1.0s; }
+}
+
+.scroller {
+  background: var(--dark);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroller__inner {
+  min-height: 110vh;
+
+  div {
+    background: #fff;
+    padding: 4rem;
+    position: sticky;
+    top: 0;
+  }
+}
+
+.tester {
+  //background: #fff;
+  display: flex;
+  transform-origin: bottom center;
+  max-width: 50vw;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 2rem;
+}
+
+.has-parallax {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
