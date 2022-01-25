@@ -1,0 +1,129 @@
+.navigation {
+  position: fixed;
+  top: 99999999;
+  transition: background 0.3s ease-in-out;
+  inset: 0;
+  height: 100vh;
+
+  .navlist {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    left: -150%;
+    position: relative;
+    transition-delay: 0s;
+  }
+}
+
+.navigation.opened {
+  background: rgba(0, 0, 0, 0.875);
+
+  .navlist {
+    opacity: 1;
+    left: 0;
+    transition-delay: 0.3s;
+  }
+}
+
+button.nav__toggle {
+  position: fixed;
+  top: 4px;
+  left: 4px;
+  background: none;
+  color: var(--dark);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  background: var(--light);
+
+  &:hover {
+    color: var(--dark);
+  }
+}
+
+.navigation.opened button.nav__toggle {
+  background: var(--light);
+}
+
+.navlist {
+  padding: calc(2rem + 4px) calc(4rem + 4px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--light);
+  margin: 0;
+  list-style: none;
+  max-width: calc(100% - 1.5rem);
+  height: 100%;
+  border-right: 2px solid #fff;
+}
+
+.navlist a {
+  color: var(--dark);
+  text-decoration: none;
+  font-size: clamp(1.875em, 4vw, 2em);
+  font-family: var(--display);
+}
+
+@media screen and (min-width: 1440px) {
+  .navigation.opened {
+    background: none;
+
+    .navlist {
+      opacity: 1;
+      left: 0;
+      transition-delay: 0.3s;
+    }
+  }
+
+  .navigation {
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
+
+  button.nav__toggle {
+    display: none;
+  }
+
+  .navigation.closed .navlist {
+    opacity: 1;
+    position: relative;
+    left: 0;
+  }
+
+  .navlist {
+    flex-direction: row;
+    max-width: 100%;
+    align-items: center;
+    padding: 0;
+    border-right: 0;
+    background: none;
+  }
+
+  .navlist a {
+    font-size: clamp(1.25em, 4vw, 1.25em);
+    position: relative;
+
+    &::after {
+      content: '';
+      width: 100%;
+      bottom: -2px;
+      left: 0;
+      background: #000;
+      height: 2px;
+      position: absolute;
+      max-width: 0%;
+      transition: max-width 0.3s ease-in-out;
+    }
+
+    &:hover::after {
+      max-width: 100%;
+    }
+  }
+
+  .has-button {
+    margin-left: auto;
+  }
+}

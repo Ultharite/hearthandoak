@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useInViewScroll } from '../useInViewScroll'
 import { motion, useTransform, useSpring } from 'framer-motion'
 
-const Understand = ({
+const ParallaxPlus = ({
   children,
   inViewMin = 0,
   inViewMax = 0.25,
@@ -41,11 +41,7 @@ const Understand = ({
     [opacityMin, opacityMax]
   )
 
-  const yRange = useTransform(
-    progress,
-    [inViewMin, inViewMax],
-    [yMin, yMax]
-  )
+  const yRange = useTransform(progress, [inViewMin, inViewMax], [yMin, yMax])
 
   const scaleRangeSpring = useSpring(scaleRange, {
     damping: 60,
@@ -79,4 +75,4 @@ const Understand = ({
   )
 }
 
-export default Understand
+export default ParallaxPlus

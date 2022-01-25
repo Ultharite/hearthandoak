@@ -1,47 +1,32 @@
-import {
-  motion,
-  useViewportScroll,
-  useTransform,
-  useSpring,
-} from 'framer-motion'
-import { useState, useRef, useEffect, useLayoutEffect } from 'react'
+import { useRef } from 'react'
+import { useInViewScroll } from '../useInViewScroll'
+import { motion, useTransform, useSpring } from 'framer-motion'
 
-const Parallax = ({ children, offset = 50, stiffness = 100, damping = 64 }) => {
+const Parallax = ({
+  children,
+  inViewMin = 0,
+  inViewMax = 0.25,
+  yMin = 0,
+  yMax = -32,
+  damping = 60,
+  stiffness = 100,
+}) => {
+  const ref = useRef()
+  const progress = useInViewScroll(ref)
+  const yRange = useTransform(progress, [inViewMin, inViewMax], [yMin, yMax])
 
-  
-  const [elementTop, setElementTop] = useState(0)
-  const [clientHeight, setClientHeight] = useState(0)
-  const ref = useRef(null)
-
-  const initial = elementTop - clientHeight
-  const final = elementTop + offset
-
-  const { scrollY } = useViewportScroll()
-  const yRange = useTransform(scrollY, [initial, -final], [offset, -offset])
-
-  const y = useSpring(yRange, { stiffness: stiffness, damping: damping })
-
-
-  useLayoutEffect(() => {
-    const element = ref.current
-    const elementParent = ref.current.elementParent
-    const onResize = () => {
-      setElementTop(
-        element.offsetHeight ||
-          setClientHeight(window.innerHeight)
-      )
-    }
-    onResize()
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [ref])
+  const yRangeSpring = useSpring(yRange, {
+    damping: damping,
+    stiffness: stiffness,
+  })
 
   return (
     <motion.div
-      className="motion"
-      viewport={{ amount: 1 }}
       ref={ref}
-      style={{ y }}
+      className="parallaxer"
+      style={{
+        y: yRangeSpring,
+      }}
     >
       {children}
     </motion.div>

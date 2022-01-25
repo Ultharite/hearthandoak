@@ -1,11 +1,19 @@
-import React from "react"
-import { GlobalContext } from "../pages/_layout"
+import React from 'react'
+import { GlobalContext } from '../pages/_layout'
 
-const ImageHover = ({children}) => {
+const ImageHover = ({ children }) => {
+  const { setOverButtonTrue, setOverButtonFalse } =
+    React.useContext(GlobalContext)
 
-  const {overButton, setOverButtonTrue, setOverButtonFalse} = React.useContext(GlobalContext)
-  
- return <div className="test" onMouseOver={setOverButtonTrue} onMouseLeave={setOverButtonFalse}>{children}</div>
+  return (
+    <div
+      className="no-hover"
+      onMouseOver={setOverButtonTrue}
+      onMouseLeave={setOverButtonFalse}
+    >
+      {children}
+    </div>
+  )
 }
 
 export default ImageHover

@@ -1,15 +1,37 @@
-import { GlobalContext } from "../../pages/_layout"
+import { GlobalContext } from '../../pages/_layout'
 
-import React from "react"
+import React from 'react'
 
-const Button = ({className, children, onClick}) => {
+import Link from 'next/link'
 
-  const {overButton, setOverButtonTrue, setOverButtonFalse} = React.useContext(GlobalContext)
+const Button = ({ className, children, onClick, asLink, href }) => {
+  const { setOverButtonTrue, setOverButtonFalse } =
+    React.useContext(GlobalContext)
+
+  if (asLink === true) {
+    return (
+      <Link href={href}>
+        <a
+          onMouseEnter={setOverButtonTrue}
+          onMouseLeave={setOverButtonFalse}
+          className={className}
+        >
+          {children}
+        </a>
+      </Link>
+    )
+  }
 
   return (
-    <button onClick={onClick} onMouseEnter={setOverButtonTrue} onMouseLeave={setOverButtonFalse} className={className}>{children}</button>
+    <button
+      onClick={onClick}
+      onMouseEnter={setOverButtonTrue}
+      onMouseLeave={setOverButtonFalse}
+      className={className}
+    >
+      {children}
+    </button>
   )
-
 }
 
 export default Button

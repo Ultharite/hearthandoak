@@ -1,13 +1,6 @@
 import { useEffect } from 'react'
 import { useMotionValue, useViewportScroll } from 'framer-motion'
-import { useInView, observe } from 'react-intersection-observer'
 
-/**
- * `useInViewScroll` returns a MotionValue that updates when the target element is visible in viewport
- *
- * @param el - The target element
- * @param options - An object of options e.g. `threshold`
- */
 export const useInViewScroll = (el) => {
   const progress = useMotionValue(0)
   const { scrollY } = useViewportScroll()
@@ -27,10 +20,6 @@ export const useInViewScroll = (el) => {
       const total = Math.min(window.innerHeight, elPosY) + elHeight - threshold
 
       const quotient = current / total
-
-      const testFunction = () => {
-        return null
-      }
 
       if (quotient > 0 && quotient < 1) {
         progress.set(quotient)
