@@ -7,7 +7,7 @@
 
   .navlist {
     opacity: 0;
-    transition: all 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out;
     left: -150%;
     position: relative;
     transition-delay: 0s;
@@ -16,11 +16,20 @@
 
 .navigation.opened {
   background: rgba(0, 0, 0, 0.875);
+  max-height: 100vh;
 
   .navlist {
     opacity: 1;
     left: 0;
     transition-delay: 0.3s;
+  }
+}
+
+.navigation.closed {
+  max-height: 0vh;
+
+  .navlist {
+    opacity: 0;
   }
 }
 
@@ -75,6 +84,10 @@ button.nav__toggle {
       left: 0;
       transition-delay: 0.3s;
     }
+  }
+
+  .navigation.closed, .navigation.opened {
+    max-height: 100vh;
   }
 
   .navigation {

@@ -3,6 +3,10 @@ import Image from 'next/image'
 
 import ParallaxPlus from '../components/parallax/ParallaxPlus'
 
+import Button from '../components/button/button'
+
+import { motion } from 'framer-motion'
+
 import { useState } from 'react'
 import Head from 'next/head'
 
@@ -10,6 +14,78 @@ import { InView } from 'react-intersection-observer'
 
 const Portfolio = () => {
   const [background, setBackground] = useState('light')
+
+  const engagement = {
+    name: 'engagement',
+    photos: [
+      'DHC_8063-72f096bb.webp',
+      'DSC_9977-51814f3e.webp',
+      'Perrone_Engagement-64-5f04c7fe.webp',
+      'MAC_5129-8e838aa8.webp',
+      'AugustEpics-77-036a301c.webp',
+      'AugustEpics-25-930e6532.webp',
+    ],
+  }
+
+  const wedding = {
+    name: 'wedding',
+    photos: [
+      'JS-47-889f2d9d.webp',
+      'JDWEDFINAL-2246-4b998afb.webp',
+      'Diana_Dan_Wedding-319-c75e964f.webp',
+      'DCP_3403-a7831de8.webp',
+      'DCP_1562-8c12dc16.webp',
+      'CassieMike-1172-1153e065.webp',
+    ],
+  }
+
+  const family = {
+    name: 'family',
+    photos: [
+      'AJ-23-7a7f7dd3.webp',
+      'Emily_2015-24-b72b70b1.webp',
+      'Giannone-50-8a62365b.webp',
+      'James_and_caroline-3-aae12c14.webp',
+      'Melissa_Lott-14-4aad8a10.webp',
+      'Meyers_Maternity-33-904e369b.webp',
+    ],
+  }
+
+  const PhotoGallery = ({ category }) => {
+
+    let randoms = []
+
+    category.photos.forEach((item) => {
+      randoms.push(Math.floor((Math.random() * 64)))
+      console.log(randoms)
+    })
+
+    return (
+      <section className="portfolio-gallery">
+        {category.photos.map((photo, p) => {
+          return (
+            <ParallaxPlus yMin={0} yMax={0} rotateXMin={1} scaleMin={0.9} stiffness={100} key={p}>
+              <ImageHover>
+                <motion.div
+              
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  className="photo-gallery-img"
+                >
+                  <Image
+                    src={`/photos/${category.name}/${photo}`}
+                    width="1000"
+                    height="668"
+                    alt={category[p]}
+                  ></Image>
+                </motion.div>
+              </ImageHover>
+            </ParallaxPlus>
+          )
+        })}
+      </section>
+    )
+  }
 
   return (
     <main className={`page ${background}`}>
@@ -21,6 +97,13 @@ const Portfolio = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <InView
+        threshold="0.01"
+        onChange={(inView, ref) => {
+          inView === true ? setBackground('light') : setBackground('dark')
+        }}
+      >
       <header className="header container">
         <h1>Portfolio</h1>
         <h2>SOME OF OUR CLIENT&apos;S STORIES &amp; JOURNEY</h2>
@@ -85,9 +168,10 @@ const Portfolio = () => {
           </a>
         </ImageHover>
       </div>
+      </InView>
 
       <InView
-        threshold="0.1"
+        threshold="0.01"
         onChange={(inView, ref) => {
           inView === true ? setBackground('dark') : setBackground('light')
         }}
@@ -115,10 +199,10 @@ const Portfolio = () => {
                     </p>
                   </header>
                   <div className="portfolio-photowrap py-2">
-                    <ParallaxPlus>
+                    <ParallaxPlus className="square">
                       <Image
-                        className="pa"
-                        src="/JS-17-25026538.webp"
+                        theClass="square"
+                        src="/photos/square-engagement.webp"
                         alt="Engagement"
                         layout="fill"
                         objectFit="cover"
@@ -130,6 +214,15 @@ const Portfolio = () => {
               )
             }}
           </InView>
+
+          <PhotoGallery category={engagement}></PhotoGallery>
+
+          <section className="portfolio-cta container">
+          <div className="portfolio-cta__inner">
+          <h2>Your story starts here.</h2>
+          <p>We would love to capture the moment!</p>
+          <Button>Book a session</Button></div>
+          </section>
 
           <InView threshold="0.1">
             {({ inView, ref, entry }) => {
@@ -155,11 +248,11 @@ const Portfolio = () => {
                     </p>
                   </header>
                   <div className="portfolio-photowrap py-2">
-                    <ParallaxPlus>
+                    <ParallaxPlus className="square">
                       <Image
                         className="pa"
-                        src="/JS-17-25026538.webp"
-                        alt="Engagement"
+                        src="/photos/square-wedding.webp"
+                        alt="Wedding"
                         layout="fill"
                         objectFit="cover"
                         objectPosition={'right'}
@@ -170,6 +263,15 @@ const Portfolio = () => {
               )
             }}
           </InView>
+
+          <PhotoGallery category={wedding}></PhotoGallery>
+
+          <section className="portfolio-cta container">
+          <div className="portfolio-cta__inner">
+          <h2>Tell your story for years to come.</h2>
+          <p>We would love to capture the moment!</p>
+          <Button>Book a session</Button></div>
+          </section>
 
           <InView threshold="0.1">
             {({ inView, ref, entry }) => {
@@ -193,11 +295,11 @@ const Portfolio = () => {
                     </p>
                   </header>
                   <div className="portfolio-photowrap py-2">
-                    <ParallaxPlus>
+                    <ParallaxPlus className="square">
                       <Image
                         className="pa"
-                        src="/JS-17-25026538.webp"
-                        alt="Engagement"
+                        src="/photos/square-family.webp"
+                        alt="family"
                         layout="fill"
                         objectFit="cover"
                         objectPosition={'right'}
@@ -208,6 +310,15 @@ const Portfolio = () => {
               )
             }}
           </InView>
+
+          <PhotoGallery category={family}></PhotoGallery>
+
+          <section className="portfolio-cta container">
+          <div className="portfolio-cta__inner">
+          <h2>Where the journey takes you...</h2>
+          <p>We would love to capture the moment!</p>
+          <Button>Book a session</Button></div>
+          </section>
         </div>
       </InView>
     </main>

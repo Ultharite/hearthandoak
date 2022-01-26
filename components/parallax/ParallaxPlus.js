@@ -16,6 +16,7 @@ const ParallaxPlus = ({
   opacityMax = 1,
   yMin = 0,
   yMax = 0,
+  className
 }) => {
   const ref = useRef()
   const progress = useInViewScroll(ref)
@@ -61,7 +62,7 @@ const ParallaxPlus = ({
   return (
     <motion.div
       ref={ref}
-      className="tester"
+      className={`parallaxplus ${className}`}
       style={{
         scale: scaleRangeSpring,
         transformPerspective: perspectiveRangeSpring,

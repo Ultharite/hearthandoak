@@ -199,11 +199,7 @@ export default function Home() {
         />
       </section>
 
-      <footer className="sitefooter container">
-        <span className="copyright">
-          All content copyright &copy; 2022 Hearth &amp; Oak Photography Company
-        </span>
-      </footer>
+      
     </div>
   )
 }

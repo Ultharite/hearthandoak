@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
+import useMouse from '@react-hook/mouse-position'
 
+
+/*
 const useMouseX = () => {
   const [mouse, setMouse] = useState()
 
@@ -24,3 +27,5 @@ const useMouseX = () => {
 }
 
 export default useMouseX
+
+*/
