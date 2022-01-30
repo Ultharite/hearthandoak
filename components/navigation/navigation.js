@@ -15,7 +15,7 @@ const Navigation = () => {
   return (
     <nav className={`navigation ${navOpen == true ? 'opened' : 'closed'}`}>
       <Button className="nav__toggle" onClick={toggleNav}>
-        O
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg>
       </Button>
       <ul className="navlist">
         <li>
@@ -34,17 +34,18 @@ const Navigation = () => {
           </Link>
         </li>
         <li>
-          <Link href="/">
-            <a onClick={toggleNav}>Weddings</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/">
+          <Link href="/portfolio#engagement">
             <a onClick={toggleNav}>Engagement</a>
           </Link>
         </li>
         <li>
-          <Link href="/">
+          <Link href="/portfolio#weddings">
+            <a onClick={toggleNav}>Weddings</a>
+          </Link>
+        </li>
+        
+        <li>
+          <Link href="/portfolio#family">
             <a onClick={toggleNav}>Families &amp; Children</a>
           </Link>
         </li>

@@ -7,8 +7,12 @@ const Cursor = forwardRef((props, ref) => {
 
   const { overButton } = useContext(GlobalContext)
 
-  const styles = {
-    transform: `translate(${mouse.pageX}px, ${mouse.pageY}px)`,
+  const styles = null
+
+  if (ref.current) {
+  styles = {
+    transform: `translate(${mouse.pageX < ref.current.clientWidth - 68 ? mouse.pageX : ref.current.clientWidth - 68}px, ${mouse.pageY}px)`,
+  }
   }
   
   return (

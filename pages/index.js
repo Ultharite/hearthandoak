@@ -1,19 +1,19 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
 import Image from 'next/image'
 import Parallax from '../components/parallax/parallax'
 import { InView } from 'react-intersection-observer'
 import { GlobalContext } from '../pages/_layout'
-import React from 'react'
 import Button from '../components/button/button'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 import ImageHover from '../components/imagehover'
 
 export default function Home() {
   const [background, setBackground] = useState('light')
 
-  const { toggleDrawer } = React.useContext(GlobalContext)
+  const { toggleDrawer } = useContext(GlobalContext)
 
   return (
     <div className={`bg ${background}`}>
@@ -106,7 +106,7 @@ export default function Home() {
                   </h3>
                   <div className="links">
                     <ImageHover>
-                      <a className="links__action" href="#">
+                      <a className="links__action" href="/portfolio#engagement">
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -123,7 +123,7 @@ export default function Home() {
                       </a>
                     </ImageHover>
                     <ImageHover>
-                      <a className="links__action" href="#">
+                      <a className="links__action" href="/portfolio#wedding">
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"
@@ -140,7 +140,7 @@ export default function Home() {
                       </a>
                     </ImageHover>
                     <ImageHover>
-                      <a className="links__action" href="#">
+                      <a className="links__action" href="/portfolio#family">
                         <div className="links__imgwrap">
                           <Image
                             className="links__img"

@@ -5,15 +5,26 @@ import ParallaxPlus from '../components/parallax/ParallaxPlus'
 
 import Button from '../components/button/button'
 
-import { motion } from 'framer-motion'
-
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
+
+import PhotoGallery from '../components/photogallery/photogallery'
+
+import { GlobalContext } from './_layout'
 
 import { InView } from 'react-intersection-observer'
 
 const Portfolio = () => {
   const [background, setBackground] = useState('light')
+
+  const [headerInView, setHeaderInView] = useState(null)
+
+  const setBackgroundColor = (isinview) => {
+    setHeaderInView(isinview)
+    isinview == true ? setBackground('light') : setBackground('dark')
+  }
+
+  const { toggleDrawer } = React.useContext(GlobalContext)
 
   const engagement = {
     name: 'engagement',
@@ -51,41 +62,7 @@ const Portfolio = () => {
     ],
   }
 
-  const PhotoGallery = ({ category }) => {
-
-    let randoms = []
-
-    category.photos.forEach((item) => {
-      randoms.push(Math.floor((Math.random() * 64)))
-      console.log(randoms)
-    })
-
-    return (
-      <section className="portfolio-gallery">
-        {category.photos.map((photo, p) => {
-          return (
-            <ParallaxPlus yMin={0} yMax={0} rotateXMin={1} scaleMin={0.9} stiffness={100} key={p}>
-              <ImageHover>
-                <motion.div
-              
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  className="photo-gallery-img"
-                >
-                  <Image
-                    src={`/photos/${category.name}/${photo}`}
-                    width="1000"
-                    height="668"
-                    alt={category[p]}
-                  ></Image>
-                </motion.div>
-              </ImageHover>
-            </ParallaxPlus>
-          )
-        })}
-      </section>
-    )
-  }
+  
 
   return (
     <main className={`page ${background}`}>
@@ -101,7 +78,7 @@ const Portfolio = () => {
       <InView
         threshold="0.01"
         onChange={(inView, ref) => {
-          inView === true ? setBackground('light') : setBackground('dark')
+          setBackgroundColor(inView)
         }}
       >
       <header className="header container">
@@ -117,7 +94,7 @@ const Portfolio = () => {
 
       <div className="links container">
         <ImageHover>
-          <a className="links__action" href="#">
+          <a className="links__action" href="#engagement">
             <div className="links__imgwrap">
               <Image
                 className="links__img"
@@ -134,7 +111,7 @@ const Portfolio = () => {
           </a>
         </ImageHover>
         <ImageHover>
-          <a className="links__action" href="#">
+          <a className="links__action" href="#wedding">
             <div className="links__imgwrap">
               <Image
                 className="links__img"
@@ -151,7 +128,7 @@ const Portfolio = () => {
           </a>
         </ImageHover>
         <ImageHover>
-          <a className="links__action" href="#">
+          <a className="links__action" href="#family">
             <div className="links__imgwrap">
               <Image
                 className="links__img"
@@ -173,7 +150,7 @@ const Portfolio = () => {
       <InView
         threshold="0.01"
         onChange={(inView, ref) => {
-          inView === true ? setBackground('dark') : setBackground('light')
+          inView === true && headerInView == false ? setBackground('dark') : setBackground('light')
         }}
       >
         <div>
@@ -187,6 +164,7 @@ const Portfolio = () => {
               return (
                 <section
                   ref={ref}
+                  id="engagement"
                   className={`container portfolio-section grid gap-2 ${inView}`}
                 >
                   <header className="portfolio-header">
@@ -221,7 +199,7 @@ const Portfolio = () => {
           <div className="portfolio-cta__inner">
           <h2>Your story starts here.</h2>
           <p>We would love to capture the moment!</p>
-          <Button>Book a session</Button></div>
+          <Button onClick={toggleDrawer}>Book a session</Button></div>
           </section>
 
           <InView threshold="0.1">
@@ -234,6 +212,7 @@ const Portfolio = () => {
               return (
                 <section
                   ref={ref}
+                  id="weddings"
                   className={`container portfolio-section grid gap-2 ${inView}`}
                 >
                   <header className="portfolio-header">
@@ -270,12 +249,13 @@ const Portfolio = () => {
           <div className="portfolio-cta__inner">
           <h2>Tell your story for years to come.</h2>
           <p>We would love to capture the moment!</p>
-          <Button>Book a session</Button></div>
+          <Button onClick={toggleDrawer}>Book a session</Button></div>
           </section>
 
           <InView threshold="0.1">
             {({ inView, ref, entry }) => {
               const title = 'Family'
+              
               const titleSplit = title.split('').map((letter, l) => {
                 return <span key={l}>{letter}</span>
               })
@@ -283,6 +263,7 @@ const Portfolio = () => {
               return (
                 <section
                   ref={ref}
+                  id="family"
                   className={`container portfolio-section grid gap-2 ${inView}`}
                 >
                   <header className="portfolio-header">
@@ -317,7 +298,7 @@ const Portfolio = () => {
           <div className="portfolio-cta__inner">
           <h2>Where the journey takes you...</h2>
           <p>We would love to capture the moment!</p>
-          <Button>Book a session</Button></div>
+          <Button onClick={toggleDrawer}>Book a session</Button></div>
           </section>
         </div>
       </InView>

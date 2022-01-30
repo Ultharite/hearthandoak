@@ -15,7 +15,7 @@
 }
 
 .navigation.opened {
-  background: rgba(0, 0, 0, 0.875);
+  background: rgba(0, 0, 0, 0.5);
   max-height: 100vh;
 
   .navlist {
@@ -45,6 +45,7 @@ button.nav__toggle {
   justify-content: center;
   z-index: 1;
   background: var(--light);
+  padding: 4px;
 
   &:hover {
     color: var(--dark);
@@ -75,7 +76,7 @@ button.nav__toggle {
   font-family: var(--display);
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1218px) {
   .navigation.opened {
     background: none;
 
