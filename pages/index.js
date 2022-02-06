@@ -7,6 +7,8 @@ import { InView } from 'react-intersection-observer'
 import { GlobalContext } from '../pages/_layout'
 import Button from '../components/button/button'
 import { useState, useContext } from 'react'
+import Parallaxer from '../components/parallax/parallaxer'
+
 
 import ImageHover from '../components/imagehover'
 
@@ -57,7 +59,10 @@ export default function Home() {
         <ImageHover>
           <div className="hero__imagewrap">
             <img className="flourish" src="/flourish.svg" alt="Flourish" />
-            <Parallax>
+            <Parallaxer
+              yMax={-64}
+              className='heroimg'
+              >
               <Image
                 src="/CassieMike-1167-d9b5c0d8.webp"
                 width="1024"
@@ -65,8 +70,9 @@ export default function Home() {
                 alt="Cassie &amp; Mike"
                 placeholder="blur"
                 blurDataURL="/CassieMike-1167-d9b5c0d8-blur.webp"
+                loading='eager'
               />
-            </Parallax>
+            </Parallaxer>
           </div>
         </ImageHover>
       </section>
@@ -80,7 +86,6 @@ export default function Home() {
         {({ inView, ref, entry }) => {
           return (
             <section className="about container" id="about-us" ref={ref}>
-              <Parallax>
                 <div>
                   <InView threshold="0.1" triggerOnce="true">
                     {({ inView, ref, entry }) => (
@@ -160,7 +165,6 @@ export default function Home() {
                     </ImageHover>
                   </div>
                 </div>
-              </Parallax>
             </section>
           )
         }}
@@ -198,8 +202,6 @@ export default function Home() {
           alt="Reach out to us"
         />
       </section>
-
-      
     </div>
   )
 }

@@ -892,6 +892,13 @@ img {
   }
 }
 
+
+.parallaxer.heroimg {
+  max-height: 50vh;
+  position: relative;
+  overflow: hidden;
+}
+
 @media screen and (min-width: 1440px) {
   .portfolio-gallery {
     gap: 2rem;
@@ -916,4 +923,9 @@ img {
     padding: 2rem 20vw;
   }
 
+  .parallaxer.heroimg {
+  max-height: 2000vh;
 }
+
+}
+
