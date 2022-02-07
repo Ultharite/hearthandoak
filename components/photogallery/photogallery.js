@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 const PhotoGallery = ({ category }) => {
 
     return (
-      <section className="portfolio-gallery">
+      <section className="portfolio-gallery container">
         {category.photos.map((photo, p) => {
           return (
             <ParallaxPlus yMin={0} yMax={0} rotateXMin={1} scaleMin={0.9} stiffness={100} key={p}>
