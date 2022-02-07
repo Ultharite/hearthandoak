@@ -2,23 +2,22 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
 import Image from 'next/image'
-import Parallax from '../components/parallax/parallax'
 import { InView } from 'react-intersection-observer'
 import { GlobalContext } from '../pages/_layout'
 import Button from '../components/button/button'
-import { useState, useContext } from 'react'
+import { useContext, useRef } from 'react'
 import Parallaxer from '../components/parallax/parallaxer'
-
 
 import ImageHover from '../components/imagehover'
 
+import GalleryLink from '../components/gallerylink/gallerylink'
+
 export default function Home() {
-  const [background, setBackground] = useState('light')
 
   const { toggleDrawer } = useContext(GlobalContext)
 
   return (
-    <div className={`bg ${background}`}>
+    <div>
       <Head>
         <title>Hearth &amp; Oak</title>
         <meta
@@ -59,132 +58,57 @@ export default function Home() {
         <ImageHover>
           <div className="hero__imagewrap">
             <img className="flourish" src="/flourish.svg" alt="Flourish" />
-            <Parallaxer
-              yMax={-64}
-              className='heroimg'
-              >
+            <Parallaxer yMax={-64} className="heroimg">
               <Image
                 src="/CassieMike-1167-d9b5c0d8.webp"
                 width="1024"
                 height="1534"
                 alt="Cassie &amp; Mike"
-                placeholder="blur"
-                blurDataURL="/CassieMike-1167-d9b5c0d8-blur.webp"
-                loading='eager'
+                loading="eager"
               />
             </Parallaxer>
           </div>
         </ImageHover>
       </section>
 
-      <InView
-        threshold="0.5"
-        onChange={(inView) => {
-          inView === true ? setBackground('dark') : setBackground('light')
-        }}
-      >
-        {({ inView, ref, entry }) => {
-          return (
-            <section className="about container" id="about-us" ref={ref}>
-                <div>
-                  <InView threshold="0.1" triggerOnce="true">
-                    {({ inView, ref, entry }) => (
-                      <div className={`fade-in ${inView}`} ref={ref}>
-                        <h2 className="linewidth">
-                          HEARTH &amp; OAK PHOTOGRAPHY COMPANY
-                        </h2>
+      <section className="about container" id="about-us">
 
-                        <p className="linewidth">
-                          We are a team of seasoned and talented photographers
-                          with over 15 years of experience in all specialties of
-                          photography. We capture light and life in still images
-                          for you and your family to cherish for generations to
-                          come. We are committed to providing excellence and
-                          attention to the smallest detail of the most important
-                          moments of your day.
-                        </p>
-                      </div>
-                    )}
-                  </InView>
-                  <h3 className="text-align-right">
-                    CLIENT STORIES &amp; JOURNIES ::
-                  </h3>
-                  <div className="links">
-                    <ImageHover>
-                      <a className="links__action" href="/portfolio#engagement">
-                        <div className="links__imgwrap">
-                          <Image
-                            className="links__img"
-                            src="/links-engagement.webp"
-                            alt="Engagement"
-                            width="560"
-                            height="680"
-                          />
-                        </div>
-                        <header className="links__header">
-                          <span className="links__title">Engagement</span>
-                          <span className="links__cta">Start your story</span>
-                        </header>
-                      </a>
-                    </ImageHover>
-                    <ImageHover>
-                      <a className="links__action" href="/portfolio#wedding">
-                        <div className="links__imgwrap">
-                          <Image
-                            className="links__img"
-                            src="/links-wedding.webp"
-                            alt="Wedding"
-                            width="560"
-                            height="680"
-                          />
-                        </div>
-                        <header className="links__header">
-                          <span className="links__title">Wedding</span>
-                          <span className="links__cta">Begin your journey</span>
-                        </header>
-                      </a>
-                    </ImageHover>
-                    <ImageHover>
-                      <a className="links__action" href="/portfolio#family">
-                        <div className="links__imgwrap">
-                          <Image
-                            className="links__img"
-                            src="/links-family.webp"
-                            alt="Family"
-                            width="560"
-                            height="680"
-                          />
-                        </div>
-                        <header className="links__header">
-                          <span className="links__title">Family</span>
-                          <span className="links__cta">
-                            The journey continues
-                          </span>
-                        </header>
-                      </a>
-                    </ImageHover>
-                  </div>
-                </div>
-            </section>
-          )
-        }}
-      </InView>
+            <h2 className="linewidth">HEARTH &amp; OAK PHOTOGRAPHY COMPANY</h2>
 
-      <InView
-        threshold="0.01"
-        onChange={(inView) => {
-          inView === true ? setBackground('light') : setBackground('dark')
-        }}
-      >
-        {({ inView, ref, entry }) => {
-          return (
-            <blockquote className="p-2 container" ref={ref}>
-              &ldquo;I would find you in any lifetime.&rdquo;
-              <cite>&mdash; Kanye West</cite>
-            </blockquote>
-          )
-        }}
-      </InView>
+            <p className="linewidth">
+              We are a team of seasoned and talented photographers with over 15
+              years of experience in all specialties of photography. We capture
+              light and life in still images for you and your family to cherish
+              for generations to come. We are committed to providing excellence
+              and attention to the smallest detail of the most important moments
+              of your day.
+            </p>
+          <h3 className="text-align-right">CLIENT STORIES &amp; JOURNIES ::</h3>
+          <div className="links">
+            <GalleryLink 
+            src="/links-engagement.webp"
+            title="Engagement"
+            ctatext="Start your story"
+            />
+
+            <GalleryLink 
+            src="/links-wedding.webp"
+            title="Wedding"
+            ctatext="Begin your journey"
+            />
+
+            <GalleryLink 
+            src="/links-family.webp"
+            title="Family"
+            ctatext="The journey continues"
+            />
+            </div>
+      </section>
+
+      <blockquote className="p-2 container">
+        &ldquo;I would find you in any lifetime.&rdquo;
+        <cite>&mdash; Kanye West</cite>
+      </blockquote>
 
       <section className="bottomcta">
         <div className="container">

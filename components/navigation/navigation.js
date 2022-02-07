@@ -33,6 +33,26 @@ const Navigation = () => {
             <a onClick={toggleNav}>Portfolio</a>
           </Link>
         </li>
+        <li className="has-button">
+          <Button
+            data-label="Book Your Session"
+            className="btn-contact"
+            onClick={toggleDrawer}
+          >
+            Book your session
+          </Button>
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
+export default Navigation
+
+/*
+
+
+
         <li>
           <Link href="/portfolio#engagement">
             <a onClick={toggleNav}>Engagement</a>
@@ -49,18 +69,6 @@ const Navigation = () => {
             <a onClick={toggleNav}>Families &amp; Children</a>
           </Link>
         </li>
-        <li className="has-button">
-          <Button
-            data-label="Book Your Session"
-            className="btn-contact"
-            onClick={toggleDrawer}
-          >
-            Book your session
-          </Button>
-        </li>
-      </ul>
-    </nav>
-  )
-}
+        
 
-export default Navigation
+        */

@@ -929,3 +929,9 @@ img {
 
 }
 
+.wordbounce span { display: inline-block; }
+
+.portfolio-section, .portfolio-gallery {
+  background: var(--dark);
+  color: var(--light);
+}

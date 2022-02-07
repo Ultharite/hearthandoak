@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
     >
       <main className="site-main" ref={ref}>
         
-
+        <Cursor ref={ref} />
     
         <header className="siteheader px-2">
           <img

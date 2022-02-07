@@ -5,7 +5,7 @@ import ParallaxPlus from '../components/parallax/ParallaxPlus'
 
 import Button from '../components/button/button'
 
-import React, { useState } from 'react'
+import { useState, useRef, useEffect, useContext } from 'react'
 import Head from 'next/head'
 
 import PhotoGallery from '../components/photogallery/photogallery'
@@ -13,6 +13,12 @@ import PhotoGallery from '../components/photogallery/photogallery'
 import { GlobalContext } from './_layout'
 
 import { InView } from 'react-intersection-observer'
+
+import { motion } from 'framer-motion'
+
+import Wordbounce from '../components/wordbounce'
+
+import GalleryLink from '../components/gallerylink/gallerylink'
 
 const Portfolio = () => {
   const [background, setBackground] = useState('light')
@@ -24,7 +30,7 @@ const Portfolio = () => {
     isinview == true ? setBackground('light') : setBackground('dark')
   }
 
-  const { toggleDrawer } = React.useContext(GlobalContext)
+  const { toggleDrawer } = useContext(GlobalContext)
 
   const engagement = {
     name: 'engagement',
@@ -62,8 +68,6 @@ const Portfolio = () => {
     ],
   }
 
-  
-
   return (
     <main className={`page ${background}`}>
       <Head>
@@ -75,12 +79,6 @@ const Portfolio = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <InView
-        threshold="0.01"
-        onChange={(inView, ref) => {
-          setBackgroundColor(inView)
-        }}
-      >
       <header className="header container">
         <h1>Portfolio</h1>
         <h2>SOME OF OUR CLIENT&apos;S STORIES &amp; JOURNEY</h2>
@@ -90,218 +88,136 @@ const Portfolio = () => {
           in these timeless moments while we document your story and your
           journey together through this thing we call life.
         </p>
+        <div className="links">
+            <GalleryLink 
+            src="/links-engagement.webp"
+            title="Engagement"
+            ctatext="Start your story"
+            />
+
+            <GalleryLink 
+            src="/links-wedding.webp"
+            title="Wedding"
+            ctatext="Begin your journey"
+            />
+
+            <GalleryLink 
+            src="/links-family.webp"
+            title="Family"
+            ctatext="The journey continues"
+            />
+            </div>
       </header>
 
-      <div className="links container">
-        <ImageHover>
-          <a className="links__action" href="#engagement">
-            <div className="links__imgwrap">
-              <Image
-                className="links__img"
-                src="/links-engagement.webp"
-                alt="Engagement"
-                width="560"
-                height="680"
-              />
-            </div>
-            <header className="links__header">
-              <span className="links__title">Engagement</span>
-              <span className="links__cta">Start your story</span>
-            </header>
-          </a>
-        </ImageHover>
-        <ImageHover>
-          <a className="links__action" href="#wedding">
-            <div className="links__imgwrap">
-              <Image
-                className="links__img"
-                src="/links-wedding.webp"
-                alt="Wedding"
-                width="560"
-                height="680"
-              />
-            </div>
-            <header className="links__header">
-              <span className="links__title">Wedding</span>
-              <span className="links__cta">Begin your journey</span>
-            </header>
-          </a>
-        </ImageHover>
-        <ImageHover>
-          <a className="links__action" href="#family">
-            <div className="links__imgwrap">
-              <Image
-                className="links__img"
-                src="/links-family.webp"
-                alt="Family"
-                width="560"
-                height="680"
-              />
-            </div>
-            <header className="links__header">
-              <span className="links__title">Family</span>
-              <span className="links__cta">The journey continues</span>
-            </header>
-          </a>
-        </ImageHover>
-      </div>
-      </InView>
-
-      <InView
-        threshold="0.01"
-        onChange={(inView, ref) => {
-          inView === true && headerInView == false ? setBackground('dark') : setBackground('light')
-        }}
+      <section
+        id="engagement"
+        className={`container portfolio-section grid gap-2`}
       >
-        <div>
-          <InView threshold="0.1">
-            {({ inView, ref, entry }) => {
-              const title = 'Engagement'
-              const titleSplit = title.split('').map((letter, l) => {
-                return <span key={l}>{letter}</span>
-              })
+        <header className="portfolio-header">
+          <h2 className="portfolio-titles">
+            <Wordbounce>Engagement</Wordbounce>
+          </h2>
+          <p className="linewidth">
+            <strong>Your story starts here.</strong> When you make the decision
+            to take the plunge, the memories begin. Professionally shot photos
+            are the best way to create invites to your big day!
+          </p>
+        </header>
+        <div className="portfolio-photowrap py-2">
+          <ParallaxPlus className="square">
+            <Image
+              theClass="square"
+              src="/photos/square-engagement.webp"
+              alt="Engagement"
+              layout="fill"
+              objectFit="cover"
+              objectPosition={'right'}
+            />
+          </ParallaxPlus>
+        </div>
+      </section>
 
-              return (
-                <section
-                  ref={ref}
-                  id="engagement"
-                  className={`container portfolio-section grid gap-2 ${inView}`}
-                >
-                  <header className="portfolio-header">
-                    <h2 className="portfolio-title">{titleSplit}</h2>
-                    <p className="linewidth">
-                      <strong>Your story starts here.</strong> When you make the
-                      decision to take the plunge, the memories begin.
-                      Professionally shot photos are the best way to create
-                      invites to your big day!
-                    </p>
-                  </header>
-                  <div className="portfolio-photowrap py-2">
-                    <ParallaxPlus className="square">
-                      <Image
-                        theClass="square"
-                        src="/photos/square-engagement.webp"
-                        alt="Engagement"
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition={'right'}
-                      />
-                    </ParallaxPlus>
-                  </div>
-                </section>
-              )
-            }}
-          </InView>
-
-          <PhotoGallery category={engagement}></PhotoGallery>
-
-          <section className="portfolio-cta container">
-          <div className="portfolio-cta__inner">
+      <PhotoGallery category={engagement}></PhotoGallery>
+      <section className="portfolio-cta container">
+        <div className="portfolio-cta__inner">
           <h2>Your story starts here.</h2>
           <p>We would love to capture the moment!</p>
-          <Button onClick={toggleDrawer}>Book a session</Button></div>
-          </section>
+          <Button onClick={toggleDrawer}>Book a session</Button>
+        </div>
+      </section>
 
-          <InView threshold="0.1">
-            {({ inView, ref, entry }) => {
-              const title = 'Wedding'
-              const titleSplit = title.split('').map((letter, l) => {
-                return <span key={l}>{letter}</span>
-              })
+      <section
+        id="weddings"
+        className={`container portfolio-section grid gap-2`}
+      >
+        <header className="portfolio-header">
+          <h2 className="portfolio-titles">
+            <Wordbounce>Weddings</Wordbounce>
+          </h2>
+          <p className="linewidth">
+            As a photographer my goal is to make your big day the most
+            memorable, and to capture every moment as it happens. We work the
+            whole day from the preparation to the, limo rides to the reception
+            and make sure that every memory is saved in the best possible color
+            and light. <strong>To tell your story for years to come.</strong>
+          </p>
+        </header>
+        <div className="portfolio-photowrap py-2">
+          <ParallaxPlus className="square">
+            <Image
+              className="pa"
+              src="/photos/square-wedding.webp"
+              alt="Wedding"
+              layout="fill"
+              objectFit="cover"
+              objectPosition={'right'}
+            />
+          </ParallaxPlus>
+        </div>
+      </section>
 
-              return (
-                <section
-                  ref={ref}
-                  id="weddings"
-                  className={`container portfolio-section grid gap-2 ${inView}`}
-                >
-                  <header className="portfolio-header">
-                    <h2 className="portfolio-title">{titleSplit}</h2>
-                    <p className="linewidth">
-                      As a photographer my goal is to make your big day the most
-                      memorable, and to capture every moment as it happens. We
-                      work the whole day from the preparation to the, limo rides
-                      to the reception and make sure that every memory is saved
-                      in the best possible color and light.{' '}
-                      <strong>To tell your story for years to come.</strong>
-                    </p>
-                  </header>
-                  <div className="portfolio-photowrap py-2">
-                    <ParallaxPlus className="square">
-                      <Image
-                        className="pa"
-                        src="/photos/square-wedding.webp"
-                        alt="Wedding"
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition={'right'}
-                      />
-                    </ParallaxPlus>
-                  </div>
-                </section>
-              )
-            }}
-          </InView>
-
-          <PhotoGallery category={wedding}></PhotoGallery>
-
-          <section className="portfolio-cta container">
-          <div className="portfolio-cta__inner">
+      <PhotoGallery category={wedding}></PhotoGallery>
+      <section className="portfolio-cta container">
+        <div className="portfolio-cta__inner">
           <h2>Tell your story for years to come.</h2>
           <p>We would love to capture the moment!</p>
-          <Button onClick={toggleDrawer}>Book a session</Button></div>
-          </section>
+          <Button onClick={toggleDrawer}>Book a session</Button>
+        </div>
+      </section>
 
-          <InView threshold="0.1">
-            {({ inView, ref, entry }) => {
-              const title = 'Family'
-              
-              const titleSplit = title.split('').map((letter, l) => {
-                return <span key={l}>{letter}</span>
-              })
+      <section id="family" className={`container portfolio-section grid gap-2`}>
+        <header className="portfolio-header">
+          <h2 className="portfolio-titles">
+            <Wordbounce>Family</Wordbounce>
+          </h2>
+          <p className="linewidth">
+            <strong>Where the journey takes you</strong> we are there to capture
+            the moment, freeze it in time and deliver you the best possible
+            quality photographs to keep for years to come.
+          </p>
+        </header>
+        <div className="portfolio-photowrap py-2">
+          <ParallaxPlus className="square">
+            <Image
+              className="pa"
+              src="/photos/square-family.webp"
+              alt="family"
+              layout="fill"
+              objectFit="cover"
+              objectPosition={'right'}
+            />
+          </ParallaxPlus>
+        </div>
+      </section>
 
-              return (
-                <section
-                  ref={ref}
-                  id="family"
-                  className={`container portfolio-section grid gap-2 ${inView}`}
-                >
-                  <header className="portfolio-header">
-                    <h2 className="portfolio-title">{titleSplit}</h2>
-                    <p className="linewidth">
-                      <strong>Where the journey takes you</strong> we are there
-                      to capture the moment, freeze it in time and deliver you
-                      the best possible quality photographs to keep for years to
-                      come.
-                    </p>
-                  </header>
-                  <div className="portfolio-photowrap py-2">
-                    <ParallaxPlus className="square">
-                      <Image
-                        className="pa"
-                        src="/photos/square-family.webp"
-                        alt="family"
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition={'right'}
-                      />
-                    </ParallaxPlus>
-                  </div>
-                </section>
-              )
-            }}
-          </InView>
-
-          <PhotoGallery category={family}></PhotoGallery>
-
-          <section className="portfolio-cta container">
-          <div className="portfolio-cta__inner">
+      <PhotoGallery category={family}></PhotoGallery>
+      <section className="portfolio-cta container">
+        <div className="portfolio-cta__inner">
           <h2>Where the journey takes you...</h2>
           <p>We would love to capture the moment!</p>
-          <Button onClick={toggleDrawer}>Book a session</Button></div>
-          </section>
+          <Button onClick={toggleDrawer}>Book a session</Button>
         </div>
-      </InView>
+      </section>
     </main>
   )
 }
