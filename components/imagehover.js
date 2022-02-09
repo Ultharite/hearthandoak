@@ -1,7 +1,7 @@
 import React from 'react'
 import { GlobalContext } from '../pages/_layout'
 
-const ImageHover = ({ children }) => {
+const ImageHover = ({ children, perspective }) => {
   const { setOverButtonTrue, setOverButtonFalse } =
     React.useContext(GlobalContext)
 
@@ -10,6 +10,7 @@ const ImageHover = ({ children }) => {
       className="no-hover"
       onMouseOver={setOverButtonTrue}
       onMouseLeave={setOverButtonFalse}
+      style={{perspective: perspective}}
     >
       {children}
     </div>

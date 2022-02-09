@@ -7,13 +7,14 @@ import { GlobalContext } from '../pages/_layout'
 import Button from '../components/button/button'
 import { useContext, useRef } from 'react'
 import Parallaxer from '../components/parallax/parallaxer'
+import Wordbounce from '../components/wordbounce'
 
 import ImageHover from '../components/imagehover'
 
 import GalleryLink from '../components/gallerylink/gallerylink'
+import HProgress from '../components/hprogress'
 
 export default function Home() {
-
   const { toggleDrawer } = useContext(GlobalContext)
 
   return (
@@ -27,54 +28,63 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="hero grid">
-        <div className="hero__text">
-          <InView>
-            {({ inView, ref, entry }) => (
-              <span ref={ref} className={`hero__title ${inView}`}>
-                <span>Each</span> <span>MOMENT</span>
-                <br />
-                <span>tells</span> <span>a</span> <span>STORY.</span>
-              </span>
-            )}
-          </InView>
+      <section className="newhero">
+        
 
-          <p>
-            <em>Capturing the moment is what we do.</em>
-          </p>
-          <p>
-            When choosing a photographer, it should be about finding the person
-            who can capture your moments in a style that aligns with your
-            vision. Our photography goes far beyond just the subject, it&apos;s
-            how we paint a moment in light, and capture the spontaneous. We
-            create beautiful long lasting images for you to cherish, providing
-            you with keepsakes to pass on for generations to come.
-          </p>
+        
 
-          <Button asLink={true} href="/portfolio" className="button">
-            See what we can do
-          </Button>
+        
+
+        
+
+        <div className="newhero__img">
+          <Parallaxer yMin={0} yMax={64} className="heroimg">
+            <Image
+              src="/CassieMike-1167-d9b5c0d8sq.webp"
+              layout="fill"
+              alt="Cassie &amp; Mike"
+              loading="eager"
+            />
+          </Parallaxer>
         </div>
-        <ImageHover>
-          <div className="hero__imagewrap">
-            <img className="flourish" src="/flourish.svg" alt="Flourish" />
-            <Parallaxer yMax={-64} className="heroimg">
-              <Image
-                src="/CassieMike-1167-d9b5c0d8.webp"
-                width="1024"
-                height="1534"
-                alt="Cassie &amp; Mike"
-                loading="eager"
-              />
-            </Parallaxer>
+
+        <Wordbounce
+          className="newhero__slogan"
+          splitter="words"
+          triggeronce={false}
+        >
+          Each moment tells a story.
+        </Wordbounce>
+
+        <div className="newhero__content">
+          <div className="newhero__text">
+          <h2>Capturing the moment is what we do.</h2>
+            <p>
+              When choosing a photographer, it should be about finding the
+              person who can capture your moments in a style that aligns with
+              your vision. Our photography goes far beyond just the subject,
+              it&apos;s how we paint a moment in light, and capture the
+              spontaneous. We create beautiful long lasting images for you to
+              cherish, providing you with keepsakes to pass on for generations
+              to come.
+            </p>
           </div>
-        </ImageHover>
+        </div>
       </section>
 
+
+<section className="py-4">
+  <HProgress />
+</section>
+
       <section className="about container" id="about-us">
-
-            <h2 className="linewidth">HEARTH &amp; OAK PHOTOGRAPHY COMPANY</h2>
-
+        <div className="grid">
+          <h2 className="linewidth">
+            <Wordbounce splitter="words">
+              HEARTH &amp; OAK PHOTOGRAPHY COMPANY
+            </Wordbounce>
+          </h2>
+          <div>
             <p className="linewidth">
               We are a team of seasoned and talented photographers with over 15
               years of experience in all specialties of photography. We capture
@@ -83,40 +93,55 @@ export default function Home() {
               and attention to the smallest detail of the most important moments
               of your day.
             </p>
-          <h3 className="text-align-right">CLIENT STORIES &amp; JOURNIES ::</h3>
-          <div className="links">
-            <GalleryLink 
+            <Button onClick={toggleDrawer}>Get in touch</Button>
+          </div>
+        </div>
+        <h3 className="text-align-right">
+          <Wordbounce splitter="words">
+            CLIENT STORIES &amp; JOURNIES ::
+          </Wordbounce>
+        </h3>
+        <div className="links">
+          <GalleryLink
             src="/links-engagement.webp"
             title="Engagement"
             ctatext="Start your story"
-            />
+          />
 
-            <GalleryLink 
+          <GalleryLink
             src="/links-wedding.webp"
             title="Wedding"
             ctatext="Begin your journey"
-            />
+          />
 
-            <GalleryLink 
+          <GalleryLink
             src="/links-family.webp"
             title="Family"
             ctatext="The journey continues"
-            />
-            </div>
+          />
+        </div>
       </section>
 
+      <section className="py-4">
+  <HProgress />
+</section>
+
       <blockquote className="p-2 container">
-        &ldquo;I would find you in any lifetime.&rdquo;
+        <Wordbounce splitter="words" triggeronce={false}>
+          &ldquo;I would find you in any lifetime.&rdquo;
+        </Wordbounce>
         <cite>&mdash; Kanye West</cite>
       </blockquote>
+
+      <section className="py-4">
+  <HProgress />
+</section>
 
       <section className="bottomcta">
         <div className="container">
           <h2>Reach Out To Us</h2>
           <h3>Start telling your story today.</h3>
-          <Button className="invert" onClick={toggleDrawer}>
-            Book your session
-          </Button>
+          <Button onClick={toggleDrawer}>Book your session</Button>
         </div>
         <Image
           src="/JS-17-25026538.webp"

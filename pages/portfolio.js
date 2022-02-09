@@ -20,6 +20,8 @@ import Wordbounce from '../components/wordbounce'
 
 import GalleryLink from '../components/gallerylink/gallerylink'
 
+import Parallaxer from '../components/parallax/parallaxer'
+
 const Portfolio = () => {
   const [background, setBackground] = useState('light')
 
@@ -110,7 +112,7 @@ const Portfolio = () => {
       </header>
 
       <section
-        id="engagement"
+        id="Engagement"
         className={`container portfolio-section grid gap-2`}
       >
         <header className="portfolio-header">
@@ -124,30 +126,29 @@ const Portfolio = () => {
           </p>
         </header>
         <div className="portfolio-photowrap py-2">
-          <ParallaxPlus className="square">
+          <Parallaxer className="square">
             <Image
-              theClass="square"
               src="/photos/square-engagement.webp"
               alt="Engagement"
               layout="fill"
               objectFit="cover"
               objectPosition={'right'}
             />
-          </ParallaxPlus>
+          </Parallaxer>
         </div>
       </section>
 
       <PhotoGallery category={engagement}></PhotoGallery>
       <section className="portfolio-cta container">
         <div className="portfolio-cta__inner">
-          <h2>Your story starts here.</h2>
+          <h2><Wordbounce splitter='words'>Your story starts here.</Wordbounce></h2>
           <p>We would love to capture the moment!</p>
           <Button onClick={toggleDrawer}>Book a session</Button>
         </div>
       </section>
 
       <section
-        id="weddings"
+        id="Weddings"
         className={`container portfolio-section grid gap-2`}
       >
         <header className="portfolio-header">
@@ -163,29 +164,28 @@ const Portfolio = () => {
           </p>
         </header>
         <div className="portfolio-photowrap py-2">
-          <ParallaxPlus className="square">
+          <Parallaxer className="square">
             <Image
-              className="pa"
               src="/photos/square-wedding.webp"
               alt="Wedding"
               layout="fill"
               objectFit="cover"
               objectPosition={'right'}
             />
-          </ParallaxPlus>
+          </Parallaxer>
         </div>
       </section>
 
       <PhotoGallery category={wedding}></PhotoGallery>
       <section className="portfolio-cta container">
         <div className="portfolio-cta__inner">
-          <h2>Tell your story for years to come.</h2>
+          <h2><Wordbounce splitter='words'>Tell your story for years to come.</Wordbounce></h2>
           <p>We would love to capture the moment!</p>
           <Button onClick={toggleDrawer}>Book a session</Button>
         </div>
       </section>
 
-      <section id="family" className={`container portfolio-section grid gap-2`}>
+      <section id="Family" className={`container portfolio-section grid gap-2`}>
         <header className="portfolio-header">
           <h2 className="portfolio-titles">
             <Wordbounce>Family</Wordbounce>
@@ -197,23 +197,22 @@ const Portfolio = () => {
           </p>
         </header>
         <div className="portfolio-photowrap py-2">
-          <ParallaxPlus className="square">
+          <Parallaxer className="square">
             <Image
-              className="pa"
               src="/photos/square-family.webp"
               alt="family"
               layout="fill"
               objectFit="cover"
               objectPosition={'right'}
             />
-          </ParallaxPlus>
+          </Parallaxer>
         </div>
       </section>
 
       <PhotoGallery category={family}></PhotoGallery>
       <section className="portfolio-cta container">
         <div className="portfolio-cta__inner">
-          <h2>Where the journey takes you...</h2>
+          <h2><Wordbounce splitter='words'>Where the journey takes you...</Wordbounce></h2>
           <p>We would love to capture the moment!</p>
           <Button onClick={toggleDrawer}>Book a session</Button>
         </div>

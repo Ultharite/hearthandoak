@@ -1,35 +1,33 @@
-import ParallaxPlus from "../parallax/ParallaxPlus"
-import Image from "next/image"
-import ImageHover from "../imagehover"
-import { motion } from "framer-motion"
+import ParallaxPlus from '../parallax/ParallaxPlus'
+import Image from 'next/image'
+import ImageHover from '../imagehover'
+import { useRef } from 'react'
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
+import { useInViewScroll } from '../useInViewScroll'
+import GalleryPhoto from './galleryphoto'
 
 const PhotoGallery = ({ category }) => {
+  const ref = useRef(null)
+  const progress = useInViewScroll(ref)
 
-    return (
-      <section className="portfolio-gallery container">
-        {category.photos.map((photo, p) => {
-          return (
-            <ParallaxPlus yMin={0} yMax={0} rotateXMin={1} scaleMin={0.9} stiffness={100} key={p}>
-              <ImageHover>
-                <motion.div
-              
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  className="photo-gallery-img"
-                >
-                  <Image
-                    src={`/photos/${category.name}/${photo}`}
-                    width="1000"
-                    height="668"
-                    alt={category[p]}
-                  ></Image>
-                </motion.div>
-              </ImageHover>
-            </ParallaxPlus>
-          )
-        })}
-      </section>
-    )
-  }
+  const yRange = useTransform(progress, [0, 0.5], [0, 100])
 
-  export default PhotoGallery
+  const opacityRange = useTransform(progress, [0, 0.25], [0, 1])
+
+  return (
+    <section className="portfolio-gallery container">
+      {category.photos.map((photo, p) => {
+        return (
+          <GalleryPhoto category={category} photo={photo} p={p} key={p} />
+        )
+      })}
+    </section>
+  )
+}
+
+export default PhotoGallery
