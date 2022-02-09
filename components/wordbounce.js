@@ -2,7 +2,7 @@ import { InView } from 'react-intersection-observer'
 
 import { motion } from 'framer-motion'
 
-const Wordbounce = ({ children, splitter = 'letters', triggeronce = true, className }) => {
+const Wordbounce = ({ children, splitter = 'letters', triggeronce = true, className, speed = 0.3 }) => {
   const title = children
 
   let stagger = 0.06
@@ -21,7 +21,7 @@ const Wordbounce = ({ children, splitter = 'letters', triggeronce = true, classN
 
   const letterVariants = {
     hidden: { opacity: 0, translateY: 16 },
-    visible: { opacity: 1, translateY: 0 },
+    visible: { opacity: 1, translateY: 0, transition: {duration: speed} },
   }
   
   let titleSplit = ''

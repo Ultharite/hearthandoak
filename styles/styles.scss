@@ -15,6 +15,8 @@
   overflow-x: hidden;
 
   --linewidth: min(60ch, 60rem);
+
+  --boxshadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 :root,
@@ -584,14 +586,30 @@ img {
     pointer-events: none;
     opacity: 0;
 
+    &::before {
+      content: '';
+      width: 4rem;
+      height: 4rem;
+      background: none;
+      position: absolute;
+      left: calc(50% - 2rem);
+      top: calc(50% - 2rem);
+      opacity: 1;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-origin: center center;
+      border-radius: 50%;
+      mix-blend-mode: difference;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
     &::after {
       content: '';
-      width: 8rem;
-      height: 8rem;
+      width: 1rem;
+      height: 1rem;
       background: #fff;
       position: absolute;
-      left: calc(50% - 4rem);
-      top: calc(50% - 4rem);
+      left: calc(50% - .5rem);
+      top: calc(50% - .5rem);
       opacity: 1;
       transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       transform-origin: center center;
@@ -981,6 +999,14 @@ img {
   .parallaxer__inner {
     width: 100%;
     aspect-ratio: 1;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 50%, #000);
+    }
   }
 
   &__slogan {
@@ -993,6 +1019,8 @@ img {
     text-align: center;
     line-height: 1;
     mix-blend-mode: difference;
+    margin-top: -1em;
+    text-shadow: 0 0 1rem #000, 0 0 0.5rem #000;
   }
 
   &__content {
@@ -1003,7 +1031,7 @@ img {
 
 .newhero__img {
   width: 100%;
-  height: 40vh;
+  //height: 40vh;
   position: relative;
 }
 
@@ -1103,4 +1131,20 @@ img {
 
 .py-4 {
   padding: 4rem 0;
+  position: relative;
+}
+
+.parallaxer.scaler {
+  position: absolute;
+  width: 100%;
+  inset: 0;
+
+  .parallaxer__inner {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--light);
+    margin-top: -2rem;
+    border-radius: 50%;
+  }
 }

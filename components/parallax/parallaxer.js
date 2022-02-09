@@ -15,6 +15,7 @@ const Parallaxer = ({
   yMin = 0,
   yMax = 32,
   spring = true,
+  scaling = false
 }) => {
 
   const parallaxerRef = useRef(null)
@@ -22,10 +23,27 @@ const Parallaxer = ({
   const yRange = useTransform(parallaxerInView, [0, yRangeMax], [yMin, yMax])
   const ySpring = useSpring(yRange, { stiffness: stiffness, damping: damping })
 
+  const scaleRange = useTransform(parallaxerInView, [0, 1], [0.75, 1])
+
   let yMoveType = yRange
 
   if (spring === true) {
     yMoveType = ySpring
+  }
+
+  if (scaling === true) {
+    return (
+    <div className={`parallaxer ${className}`}>
+      <motion.div
+        className="parallaxer__inner"
+        ref={parallaxerRef}
+        style={{ scale: scaleRange }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  )
+
   }
 
   return (

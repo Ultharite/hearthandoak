@@ -11,9 +11,11 @@ const HProgress = ({
 
   const xRange = useTransform(progress, [0, 0.5], [0, 100])
 
+  const heightRange = useTransform(progress, [0, 0.5], [1, 4])
+
   const xPercent = useTransform(xRange, (value) => `${value}%`)
 
-  const xRangeSpring = useSpring(xRange, {
+  const xRangeSpring = useSpring(xPercent, {
     damping: 60,
     stiffness: 400,
   })
@@ -23,7 +25,8 @@ const HProgress = ({
       ref={ref}
       className={`hprogress ${className}`}
       style={{
-        width: xPercent
+        width: xPercent,
+        height: heightRange
       }}
     >
       {children}

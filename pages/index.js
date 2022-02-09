@@ -52,6 +52,7 @@ export default function Home() {
           className="newhero__slogan"
           splitter="words"
           triggeronce={false}
+          speed={0.6}
         >
           Each moment tells a story.
         </Wordbounce>
@@ -74,6 +75,7 @@ export default function Home() {
 
 
 <section className="py-4">
+  <Parallaxer scaling={true} className="scaler"><img src="/hando-leaf.webp" alt="Hearth &amp; Oak" /></Parallaxer>
   <HProgress />
 </section>
 

@@ -32,7 +32,27 @@ const Navigation = () => {
           <Link  href="/portfolio">
             <a onClick={toggleNav}>Portfolio</a>
           </Link>
+
+          <ul>
+          <li>
+          <Link href="/portfolio#engagement">
+            <a onClick={toggleNav}>Engagement</a>
+          </Link>
         </li>
+        <li>
+          <Link href="/portfolio#weddings">
+            <a onClick={toggleNav}>Weddings</a>
+          </Link>
+        </li>
+        
+        <li>
+          <Link href="/portfolio#family">
+            <a onClick={toggleNav}>Families &amp; Children</a>
+          </Link>
+        </li>
+          </ul>
+        </li>
+        
         <li className="has-button">
           <Button
             data-label="Book Your Session"
