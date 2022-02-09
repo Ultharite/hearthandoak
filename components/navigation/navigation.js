@@ -35,18 +35,18 @@ const Navigation = () => {
 
           <ul>
           <li>
-          <Link href="/portfolio#engagement">
+          <Link href="/portfolio#Engagement" scroll={false}>
             <a onClick={toggleNav}>Engagement</a>
           </Link>
         </li>
         <li>
-          <Link href="/portfolio#weddings">
+          <Link href="/portfolio#Weddings" scroll={false}>
             <a onClick={toggleNav}>Weddings</a>
           </Link>
         </li>
         
         <li>
-          <Link href="/portfolio#family">
+          <Link href="/portfolio#Family" scroll={false}>
             <a onClick={toggleNav}>Families &amp; Children</a>
           </Link>
         </li>
