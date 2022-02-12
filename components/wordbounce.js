@@ -46,6 +46,21 @@ const Wordbounce = ({ children, splitter = 'letters', triggeronce = true, classN
     })
   }
 
+  if (splitter === 'full') {
+      return (
+        <motion.span
+        initial={{
+          opacity: 0
+        }}
+        whileInView={{
+          opacity: 1
+        }}
+        >
+          {title}
+        </motion.span>
+      )
+  }
+
   return (
     <motion.div
       className={`wordbounce ${className}`}

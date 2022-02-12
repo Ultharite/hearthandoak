@@ -5,17 +5,21 @@ import Image from 'next/image'
 import { InView } from 'react-intersection-observer'
 import { GlobalContext } from '../pages/_layout'
 import Button from '../components/button/button'
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
 import Parallaxer from '../components/parallax/parallaxer'
 import Wordbounce from '../components/wordbounce'
 
-import ImageHover from '../components/imagehover'
 
 import GalleryLink from '../components/gallerylink/gallerylink'
 import HProgress from '../components/hprogress'
 
 export default function Home() {
   const { toggleDrawer } = useContext(GlobalContext)
+
+
+  const unloadLoader = () => {
+    setTimeout(setIsLoaded('loaded'), 1000)
+  }
 
   return (
     <div>
@@ -28,9 +32,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="newhero">
-        
 
+      <section className="newhero">
         
 
         
@@ -125,18 +128,18 @@ export default function Home() {
       </section>
 
       <section className="py-4">
-  <HProgress />
+  <HProgress viewTrigger={true} />
 </section>
 
       <blockquote className="p-2 container">
-        <Wordbounce splitter="words" triggeronce={false}>
+        <Wordbounce splitter="full" triggeronce={false}>
           &ldquo;I would find you in any lifetime.&rdquo;
         </Wordbounce>
         <cite>&mdash; Kanye West</cite>
       </blockquote>
 
       <section className="py-4">
-  <HProgress />
+  <HProgress viewTrigger={true} />
 </section>
 
       <section className="bottomcta">

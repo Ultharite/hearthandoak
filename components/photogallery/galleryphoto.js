@@ -21,18 +21,16 @@ const GalleryPhoto = ({ category, photo, p }) => {
   const scaleRange = useTransform(progress, [0, 0.25], [0.5, 1])
   const scaleSpring = useSpring(scaleRange, {stiffness: 400, damping: 64})
 
-  const blurRange = useTransform(progress, [0, 0.25], [16, 0])
 
   return (
     <div ref={ref} key={p}>
-      <ImageHover perspective={3200}>
         <motion.div
           className="gallery__photo"
           style={{
             perspective: 200,
             opacity: opacityRange,
             rotateX: rotateRange,
-            scale: scaleSpring,
+            scale: scaleSpring
           }}
         >
           <Image
@@ -42,7 +40,6 @@ const GalleryPhoto = ({ category, photo, p }) => {
             alt={category[p]}
           ></Image>
         </motion.div>
-      </ImageHover>
     </div>
   )
 }

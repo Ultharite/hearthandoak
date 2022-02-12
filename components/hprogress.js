@@ -4,7 +4,8 @@ import { motion, useTransform, useSpring } from 'framer-motion'
 
 const HProgress = ({
   children,
-  className
+  className,
+  viewTrigger
 }) => {
   const ref = useRef()
   const progress = useInViewScroll(ref)
@@ -20,13 +21,32 @@ const HProgress = ({
     stiffness: 400,
   })
 
+  if (viewTrigger === true) {
+
+    return (
+    <motion.div
+      ref={ref}
+      className={`hprogress ${className}`}
+      initial = {{
+        width: 0
+      }}
+      whileInView = {{
+        width: 100 + '%'
+      }}
+      transition={{type: 'linear', delay: 0.2}}
+    >
+      {children}
+    </motion.div>
+  )
+
+  }
+
   return (
     <motion.div
       ref={ref}
       className={`hprogress ${className}`}
       style={{
-        width: xPercent,
-        height: heightRange
+        width: xPercent
       }}
     >
       {children}

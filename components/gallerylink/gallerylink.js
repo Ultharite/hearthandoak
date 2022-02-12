@@ -1,12 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
-import ImageHover from "../imagehover"
 import Wordbounce from "../wordbounce"
 
 const GalleryLink = ({title, src, ctatext}) => {
 
 return (
-  <ImageHover>
               <Link href={`/portfolio#${title}`} scroll={false}>
                 <a className="links__action">
                   <div className="links__imgwrap">
@@ -24,7 +22,6 @@ return (
                   </header>
                 </a>
               </Link>
-            </ImageHover>
 )
 
 }

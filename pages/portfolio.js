@@ -1,4 +1,3 @@
-import ImageHover from '../components/imagehover'
 import Image from 'next/image'
 
 import ParallaxPlus from '../components/parallax/ParallaxPlus'
