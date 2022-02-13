@@ -33,7 +33,7 @@ const HProgress = ({
       whileInView = {{
         width: 100 + '%'
       }}
-      transition={{type: 'linear', delay: 0.2}}
+      transition={{type: 'ease-in-out', delay: 0.2, duration: 0.5}}
     >
       {children}
     </motion.div>
