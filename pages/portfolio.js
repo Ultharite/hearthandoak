@@ -80,7 +80,7 @@ const Portfolio = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="header container">
+      <header className="header container pageheader">
         <h1>Portfolio</h1>
         <h2>SOME OF OUR CLIENT&apos;S STORIES &amp; JOURNEY</h2>
         <p className="linewidth">
@@ -89,25 +89,15 @@ const Portfolio = () => {
           in these timeless moments while we document your story and your
           journey together through this thing we call life.
         </p>
-        <div className="links">
-            <GalleryLink 
-            src="/links-engagement.webp"
-            title="Engagement"
-            ctatext="Start your story"
-            />
-
-            <GalleryLink 
-            src="/links-wedding.webp"
-            title="Wedding"
-            ctatext="Begin your journey"
-            />
-
-            <GalleryLink 
-            src="/links-family.webp"
-            title="Family"
-            ctatext="The journey continues"
-            />
-            </div>
+        <Parallaxer>
+          <Image
+          src="/Diana_Dan_Wedding-378-537c44f3.webp"
+          alt=""
+          width="2400"
+          height="1600"
+          
+           />
+        </Parallaxer>
       </header>
 
       <section

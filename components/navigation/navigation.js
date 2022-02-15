@@ -15,7 +15,14 @@ const Navigation = () => {
   return (
     <nav className={`navigation ${navOpen == true ? 'opened' : 'closed'}`}>
       <Button className="nav__toggle" onClick={toggleNav}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+        </svg>
       </Button>
       <ul className="navlist">
         <li>
@@ -29,30 +36,30 @@ const Navigation = () => {
           </Link>
         </li>
         <li className="parent">
-          <Link  href="/portfolio">
+          <Link href="/portfolio">
             <a onClick={toggleNav}>Portfolio</a>
           </Link>
 
           <ul>
-          <li>
-          <Link href="/portfolio#Engagement" scroll={false}>
-            <a onClick={toggleNav}>Engagement</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/portfolio#Weddings" scroll={false}>
-            <a onClick={toggleNav}>Weddings</a>
-          </Link>
-        </li>
-        
-        <li>
-          <Link href="/portfolio#Family" scroll={false}>
-            <a onClick={toggleNav}>Families &amp; Children</a>
-          </Link>
-        </li>
+            <li>
+              <Link href="/portfolio#Engagement" scroll={false}>
+                <a onClick={toggleNav}>Engagement</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/portfolio#Weddings" scroll={false}>
+                <a onClick={toggleNav}>Weddings</a>
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/portfolio#Family" scroll={false}>
+                <a onClick={toggleNav}>Families &amp; Children</a>
+              </Link>
+            </li>
           </ul>
         </li>
-        
+
         <li className="has-button">
           <Button
             data-label="Book Your Session"

@@ -23,7 +23,7 @@ const Parallaxer = ({
   const yRange = useTransform(parallaxerInView, [0, yRangeMax], [yMin, yMax])
   const ySpring = useSpring(yRange, { stiffness: stiffness, damping: damping })
 
-  const scaleRange = useTransform(parallaxerInView, [0, 1], [0.75, 1])
+  const scaleRange = useTransform(parallaxerInView, [0, 0.75], [0.5, 1])
 
   let yMoveType = yRange
 

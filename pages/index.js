@@ -90,7 +90,7 @@ export default function Home() {
             </Wordbounce>
           </h2>
           <div>
-            <p className="linewidth">
+            <p className="linewidth hometext">
               We are a team of seasoned and talented photographers with over 15
               years of experience in all specialties of photography. We capture
               light and life in still images for you and your family to cherish
@@ -101,12 +101,20 @@ export default function Home() {
             <Button onClick={toggleDrawer}>Get in touch</Button>
           </div>
         </div>
-        <h3 className="text-align-right">
-          <Wordbounce splitter="words">
-            CLIENT STORIES &amp; JOURNIES ::
-          </Wordbounce>
-        </h3>
-        <div className="links">
+        
+        
+      </section>
+
+      <section className="py-4 container--xl links">
+
+          <header className="links__sectionheader">
+          <h2>
+            <Wordbounce splitter="words">
+              CLIENT STORIES &amp; JOURNIES
+            </Wordbounce>
+          </h2>
+          </header>
+
           <GalleryLink
             src="/links-engagement.webp"
             title="Engagement"
@@ -124,8 +132,7 @@ export default function Home() {
             title="Family"
             ctatext="The journey continues"
           />
-        </div>
-      </section>
+        </section>
 
       <section className="py-4">
   <HProgress viewTrigger={true} />
@@ -139,7 +146,10 @@ export default function Home() {
       </blockquote>
 
       <section className="py-4">
-  <HProgress viewTrigger={true} />
+  <section className="py-4">
+  <Parallaxer scaling={true} className="scaler"><img src="/hando-leaf.webp" alt="Hearth &amp; Oak" /></Parallaxer>
+  <HProgress />
+</section>
 </section>
 
       <section className="bottomcta">

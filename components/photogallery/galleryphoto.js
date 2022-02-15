@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import ImageHover from '../imagehover'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import {
   motion,
   useTransform,
@@ -12,25 +12,29 @@ const GalleryPhoto = ({ category, photo, p }) => {
   const ref = useRef(null)
   const progress = useInViewScroll(ref)
 
-  const yRange = useTransform(progress, [0, 0.5], [0, 100])
+  const lRange = useTransform(progress, [0, 0.25], [50, 0])
 
-  const opacityRange = useTransform(progress, [0, 0.25], [0, 1])
+  const opacityRange = useTransform(progress, [0, 0, 0.25], [0, 0.1, 1])
 
-  const rotateRange = useTransform(progress, [0, 0.25], [32, 0])
-
-  const scaleRange = useTransform(progress, [0, 0.25], [0.5, 1])
+  const scaleRange = useTransform(progress, [0, 0.25], [0.875, 1])
   const scaleSpring = useSpring(scaleRange, {stiffness: 400, damping: 64})
 
+
+  const xPercent = useTransform(progress, (value) => `${value}%`)
+
+  const [loaded, setLoaded] = useState(false)
+
+
+  const clippy = useTransform(lRange, (v) => `polygon(${v}% 0, ${100 - v}% 0, ${100 - v}% 100%, ${v}% 100%)`)
 
   return (
     <div ref={ref} key={p}>
         <motion.div
-          className="gallery__photo"
+          className={`gallery__photo ${loaded}`}
           style={{
-            perspective: 200,
             opacity: opacityRange,
-            rotateX: rotateRange,
-            scale: scaleSpring
+            scale: scaleSpring,
+            clipPath: clippy
           }}
         >
           <Image
@@ -38,6 +42,9 @@ const GalleryPhoto = ({ category, photo, p }) => {
             width="1000"
             height="668"
             alt={category[p]}
+            lazyBoundary="600px"
+            className="gallery__photoimg"
+            onLoadingComplete={() => setLoaded(true)}
           ></Image>
         </motion.div>
     </div>

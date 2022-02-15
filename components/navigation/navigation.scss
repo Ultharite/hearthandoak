@@ -37,7 +37,6 @@ button.nav__toggle {
   position: fixed;
   top: 4px;
   left: 4px;
-  background: none;
   color: var(--dark);
   aspect-ratio: 1;
   display: flex;
@@ -46,6 +45,14 @@ button.nav__toggle {
   z-index: 1;
   background: var(--light);
   padding: 4px;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  box-shadow: var(--shadowpop);
+
+  svg {
+    transform: scale(1.75);
+  }
 
   &:hover {
     color: var(--dark);

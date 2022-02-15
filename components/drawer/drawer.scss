@@ -9,7 +9,8 @@
 .drawer__inner {
   position: relative;
   right: -100vw;
-  max-width: min(50rem, 90vw);
+  max-width: min(80rem, 90vw);
+  //max-width: calc(100% - 4rem);
   margin-left: auto;
   background: var(--light);
   height: 100%;
@@ -21,11 +22,12 @@
 }
 
 .drawer__header {
-  border-bottom: 1px solid #000;
+  border-bottom: 4px solid var(--dark);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 
   h2 {
     font-size: clamp(2em, 4vw, 3.5em);
@@ -38,6 +40,12 @@
   transition: all 0.3s;
 }
 
+.drawer__content h2 {
+  font-size: clamp(2em, 4vw, 3em);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
 @keyframes drawer-bg {
   0% {
     background: rgba(0,0,0,0);
@@ -45,6 +53,7 @@
 
   100% {
     background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
   }
 }
 
@@ -56,4 +65,33 @@
   100% {
     right: 0vw;
   }
+}
+
+.drawer__form {
+  padding: 1.5rem 0;
+}
+
+@media screen and (min-width: 1200px) {
+  .drawer__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .drawer__form {
+    grid-column: span 3;
+    padding: 1.5rem;
+  }
+}
+
+.drawer__contact {
+  text-align: center;
+  background: linear-gradient(rgba(255,255,255,0.5), transparent);
+  padding: 1.5rem;
+
+  a { color: var(--dark)}
+}
+
+.drawer .socials {
+  justify-content: center;
 }
