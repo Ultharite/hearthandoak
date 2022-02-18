@@ -1,0 +1,43 @@
+.wordscroller {
+  position: relative;
+  overflow: hidden;
+  font-size: 7em;
+  line-height: 1;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+}
+
+.wordscroll__caption {
+  text-align: center;
+  width: 100%;
+  font-family: var(--display);
+  text-transform: uppercase;
+  width: fit-content;
+  margin: 0 auto;
+  display: block;
+  z-index: 2;
+  font-size: clamp(3rem, 4vw, 8em);
+}
+
+.wordscroll {
+  display: flex;
+  overflow: hidden;
+  width: fit-content;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-left: -5000px;
+  font-family: var(--display);
+  color: #000;
+  opacity: 0.05;
+  position: absolute;
+
+  div {
+    display: flex;
+    gap: 4rem;
+  }
+
+  span {
+    white-space: nowrap;
+  }
+}

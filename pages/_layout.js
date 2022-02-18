@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import { useState } from 'react'
+//import React from 'react'
+import { useRef, useState, createContext } from 'react'
 
-const GlobalContext = React.createContext(true)
+const GlobalContext = createContext(true)
 
 import Drawer from '../components/drawer/drawer'
 import Button from '../components/button/button'
 import ImageHover from '../components/imagehover'
 import Navigation from '../components/navigation/navigation'
 import Cursor from '../components/cursor/cursor'
+import { InView } from 'react-intersection-observer'
 
 const Layout = ({ children }) => {
   const [drawerOpened, setDrawerOpened] = useState(false)
@@ -24,8 +25,11 @@ const Layout = ({ children }) => {
   }
 
   const [overButton, setOverButton] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  const ref = React.useRef(null)
+  const ref = useRef(null)
+
+  const topPixelRef = useRef(null)
 
   return (
     <GlobalContext.Provider
@@ -38,16 +42,20 @@ const Layout = ({ children }) => {
         setOverButtonFalse,
       }}
     >
+    <InView as="span" className="toppixel" onChange={(inView) => inView == true ? setScrolled(false) : setScrolled(true)} ref={topPixelRef}></InView>
       <main className="site-main" ref={ref}>
         
         <Cursor ref={ref} />
     
-        <header className="siteheader px-2">
-          <img
-            className="sitelogo"
-            src="/hando-logo.webp"
-            alt="Hearth &amp; Oak"
-          />
+        <header className={`siteheader px-2 scrolled-${scrolled}`}>
+          <div className="sitelogos">
+            <img
+              className="sitelogo"
+              src="/hando-logo.webp"
+              alt="Hearth &amp; Oak"
+            />
+            <img className="sitelogo-icon" alt="Hearth &amp; Oak" src="/hando-leaf.webp" />
+          </div>
           <Navigation />
         </header>
         <Drawer title="Let's Start Your Journey">

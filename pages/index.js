@@ -9,13 +9,13 @@ import { useContext, useRef, useState } from 'react'
 import Parallaxer from '../components/parallax/parallaxer'
 import Wordbounce from '../components/wordbounce'
 
-
 import GalleryLink from '../components/gallerylink/gallerylink'
 import HProgress from '../components/hprogress'
 
+import WordScroll from '../components/wordscroll/wordscroll'
+
 export default function Home() {
   const { toggleDrawer } = useContext(GlobalContext)
-
 
   const unloadLoader = () => {
     setTimeout(setIsLoaded('loaded'), 1000)
@@ -32,14 +32,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
       <section className="newhero">
-        
-
-        
-
-        
-
         <div className="newhero__img">
           <Parallaxer yMin={0} yMax={64} className="heroimg">
             <Image
@@ -62,7 +55,7 @@ export default function Home() {
 
         <div className="newhero__content">
           <div className="newhero__text">
-          <h2>Capturing the moment is what we do.</h2>
+            <h2>Capturing the moment is what we do</h2>
             <p>
               When choosing a photographer, it should be about finding the
               person who can capture your moments in a style that aligns with
@@ -76,11 +69,12 @@ export default function Home() {
         </div>
       </section>
 
-
-<section className="py-4">
-  <Parallaxer scaling={true} className="scaler"><img src="/hando-leaf.webp" alt="Hearth &amp; Oak" /></Parallaxer>
-  <HProgress />
-</section>
+      <section className="py-4">
+        <Parallaxer scaling={true} className="scaler">
+          <img src="/hando-leaf.webp" alt="Hearth &amp; Oak" />
+        </Parallaxer>
+        <HProgress />
+      </section>
 
       <section className="about container" id="about-us">
         <div className="grid">
@@ -101,42 +95,35 @@ export default function Home() {
             <Button onClick={toggleDrawer}>Get in touch</Button>
           </div>
         </div>
-        
-        
       </section>
 
+      <WordScroll caption="CLIENT STORIES &amp; JOURNIES">&nbsp;CLIENT STORIES &amp; JOURNIES</WordScroll>
+
       <section className="py-4 container--xl links">
+        
 
-          <header className="links__sectionheader">
-          <h2>
-            <Wordbounce splitter="words">
-              CLIENT STORIES &amp; JOURNIES
-            </Wordbounce>
-          </h2>
-          </header>
+        <GalleryLink
+          src="/links-engagement.webp"
+          title="Engagement"
+          ctatext="Start your story"
+        />
 
-          <GalleryLink
-            src="/links-engagement.webp"
-            title="Engagement"
-            ctatext="Start your story"
-          />
+        <GalleryLink
+          src="/links-wedding.webp"
+          title="Wedding"
+          ctatext="Begin your journey"
+        />
 
-          <GalleryLink
-            src="/links-wedding.webp"
-            title="Wedding"
-            ctatext="Begin your journey"
-          />
-
-          <GalleryLink
-            src="/links-family.webp"
-            title="Family"
-            ctatext="The journey continues"
-          />
-        </section>
+        <GalleryLink
+          src="/links-family.webp"
+          title="Family"
+          ctatext="The journey continues"
+        />
+      </section>
 
       <section className="py-4">
-  <HProgress viewTrigger={true} />
-</section>
+        <HProgress viewTrigger={true} />
+      </section>
 
       <blockquote className="p-2 container">
         <Wordbounce splitter="full" triggeronce={false}>
@@ -146,11 +133,13 @@ export default function Home() {
       </blockquote>
 
       <section className="py-4">
-  <section className="py-4">
-  <Parallaxer scaling={true} className="scaler"><img src="/hando-leaf.webp" alt="Hearth &amp; Oak" /></Parallaxer>
-  <HProgress />
-</section>
-</section>
+        <section className="py-4">
+          <Parallaxer scaling={true} className="scaler">
+            <img src="/hando-leaf.webp" alt="Hearth &amp; Oak" />
+          </Parallaxer>
+          <HProgress />
+        </section>
+      </section>
 
       <section className="bottomcta">
         <div className="container">
