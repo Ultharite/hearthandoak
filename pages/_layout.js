@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
     <InView as="span" className="toppixel" onChange={(inView) => inView == true ? setScrolled(false) : setScrolled(true)} ref={topPixelRef}></InView>
       <main className="site-main" ref={ref}>
         
-        <Cursor ref={ref} />
+        
     
         <header className={`siteheader px-2 scrolled-${scrolled}`}>
           <div className="sitelogos">

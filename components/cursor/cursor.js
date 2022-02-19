@@ -16,6 +16,8 @@ const Cursor = forwardRef((props, ref) => {
     transform: `translate(${mouse.pageX < ref.current.clientWidth - 68 ? mouse.pageX : ref.current.clientWidth - 68}px, ${mouse.pageY}px)`,
   }
   }
+
+  console.log(mouse)
   
   return (
     <div
