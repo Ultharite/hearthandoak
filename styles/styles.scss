@@ -18,7 +18,7 @@
   //font-family: 'Spectral', serif;
   font-family: 'Spectral', serif;
   font-size: 16px;
-  overflow-x: hidden;
+  //overflow-x: hidden;
 
   //line-height: 1.68;
 
@@ -33,7 +33,7 @@
 :root,
 html,
 body {
-  overflow-x: hidden;
+  //overflow-x: hidden;
 }
 
 strong {
@@ -973,6 +973,19 @@ select {
   max-height: 50vh;
   position: relative;
   overflow: hidden;
+
+  animation: circlein 1s ease-in-out both;
+
+}
+
+@keyframes circlein {
+  from {
+    clip-path: circle(0.6% at 50% 50%);
+  }
+
+  to {
+    clip-path: circle(100% at 50% 50%);
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -1004,6 +1017,7 @@ select {
 
 .wordbounce span {
   display: inline-block;
+  white-space: pre-wrap;
 }
 
 .newhero {
@@ -1098,12 +1112,6 @@ select {
   }
 
   .siteheader.scrolled-true {
-    background: linear-gradient(
-      90deg,
-      #fff,
-      rgba(255, 255, 255, 0.5),
-      transparent
-    );
     min-height: 6rem;
 
     opacity: 0;
@@ -1414,4 +1422,41 @@ footer.sitefooter {
   transform: rotate(180deg);
   path { fill: var(--light); }
   z-index: 1;
+}
+
+.clipper {
+  height: 400vh;
+  position: relative;
+}
+
+.clipper__inner {
+  display: grid;
+  position: sticky;
+  top: 0rem;
+
+  .wordscroller {
+    grid-area: 1 / 1;
+    height: 100vh;
+  }
+
+  .wordscroll__caption {
+    color: var(--light);
+    text-shadow: none;
+    font-size: clamp(2rem, 4vw, 16rem);
+    text-shadow: 0 0 2px rgba(0,0,0,0.25), 0 0 8px rgba(0,0,0,0.25), 0 0 2rem rgba(0,0,0,0.25);
+  }
+}
+
+.clipper__child {
+  grid-area: 1 / 1;
+  position: relative;
+  height: 100vh;
+  background: url('/escheresque-dark.png') var(--grey2);
+
+  img {
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(0.5);
+    opacity: 0.75;
+  }
 }

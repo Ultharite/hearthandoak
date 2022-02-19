@@ -1,9 +1,11 @@
 .wordscroller {
   position: relative;
   overflow: hidden;
-  font-size: 7em;
+  font-size: clamp(4rem, 3vw, 4em);
   line-height: 1;
-  height: 8rem;
+  height: 16rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   display: flex;
   align-items: center;
 }
@@ -18,6 +20,7 @@
   display: block;
   z-index: 2;
   font-size: clamp(3rem, 4vw, 8em);
+  text-shadow: 0 0 4px #fff;
 }
 
 .wordscroll {
@@ -35,9 +38,10 @@
   div {
     display: flex;
     gap: 4rem;
+    white-space: nowrap;
   }
 
   span {
-    white-space: nowrap;
+    white-space: pre-wrap;
   }
 }

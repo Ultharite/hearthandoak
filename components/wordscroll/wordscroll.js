@@ -15,11 +15,13 @@ const WordScroll = ({ children, caption }) => {
 
   const scrollXAmount = useTransform(scrollX, [0, 1], [0, 1000])
 
+  const scrollXSpring = useSpring(scrollXAmount, {stiffness: 400, damping: 64})
+
   let rows = []
 
   const Repeater = () => {
     for (let i = 0; i < 16; i++) {
-      rows.push(children)
+      rows.push(`${children} `)
     }
     return rows
   }
@@ -31,7 +33,7 @@ const WordScroll = ({ children, caption }) => {
         <motion.div
           ref={ref}
           className="div"
-          style={{ translateX: scrollXAmount }}
+          style={{ translateX: scrollXSpring }}
         >
           <Repeater />
         </motion.div>

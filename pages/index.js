@@ -8,7 +8,7 @@ import Button from '../components/button/button'
 import { useContext, useRef, useState } from 'react'
 import Parallaxer from '../components/parallax/parallaxer'
 import Wordbounce from '../components/wordbounce'
-
+import Clipper from '../components/parallax/clipper'
 import GalleryLink from '../components/gallerylink/gallerylink'
 import HProgress from '../components/hprogress'
 
@@ -46,9 +46,9 @@ export default function Home() {
 
         <Wordbounce
           className="newhero__slogan"
-          splitter="words"
+          splitter="letters"
           triggeronce={false}
-          speed={0.6}
+          speed={0.2}
         >
           Each moment tells a story.
         </Wordbounce>
@@ -76,28 +76,35 @@ export default function Home() {
         <HProgress />
       </section>
 
+      <WordScroll caption="HEARTH &amp; OAK PHOTOGRAPHY COMPANY">HEARTH &amp; OAK</WordScroll>
+
+      <Clipper />
+
       <section className="about container" id="about-us">
         <div className="grid">
           <h2 className="linewidth">
-            <Wordbounce splitter="words">
+            <Wordbounce splitter="words" triggeronce={false}>
               HEARTH &amp; OAK PHOTOGRAPHY COMPANY
             </Wordbounce>
           </h2>
           <div>
-            <p className="linewidth hometext">
-              We are a team of seasoned and talented photographers with over 15
-              years of experience in all specialties of photography. We capture
-              light and life in still images for you and your family to cherish
-              for generations to come. We are committed to providing excellence
-              and attention to the smallest detail of the most important moments
-              of your day.
-            </p>
-            <Button onClick={toggleDrawer}>Get in touch</Button>
+            <Clipper circular={true}>
+              <p className="linewidth hometext">
+                We are a team of seasoned and talented photographers with over 15
+                years of experience in all specialties of photography. We capture
+                light and life in still images for you and your family to cherish
+                for generations to come. We are committed to providing excellence
+                and attention to the smallest detail of the most important moments
+                of your day.
+              </p>
+              <Button onClick={toggleDrawer}>Get in touch</Button>
+            </Clipper>
+            
           </div>
         </div>
       </section>
 
-      <WordScroll caption="CLIENT STORIES &amp; JOURNIES">&nbsp;CLIENT STORIES &amp; JOURNIES</WordScroll>
+      <WordScroll caption="CLIENT STORIES &amp; JOURNIES">&nbsp;PORTFOLIO</WordScroll>
 
       <section className="py-4 container--xl links">
         

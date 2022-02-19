@@ -1,11 +1,15 @@
-import { InView } from 'react-intersection-observer'
-
 import { motion } from 'framer-motion'
 
-const Wordbounce = ({ children, splitter = 'letters', triggeronce = true, className, speed = 0.3 }) => {
+const Wordbounce = ({
+  children,
+  splitter = 'letters',
+  triggeronce = true,
+  className,
+  speed = 0.3,
+}) => {
   const title = children
 
-  let stagger = 0.06
+  let stagger = 0.03
 
   if (splitter === 'words') {
     stagger = 0.1
@@ -21,9 +25,9 @@ const Wordbounce = ({ children, splitter = 'letters', triggeronce = true, classN
 
   const letterVariants = {
     hidden: { opacity: 0, translateY: 16 },
-    visible: { opacity: 1, translateY: 0, transition: {duration: speed} },
+    visible: { opacity: 1, translateY: 0, transition: { duration: speed, type: 'spring', stiffness: 200, damping: 16, mass: 0.5 } },
   }
-  
+
   let titleSplit = ''
 
   if (splitter === 'letters') {
@@ -37,28 +41,29 @@ const Wordbounce = ({ children, splitter = 'letters', triggeronce = true, classN
   }
 
   if (splitter === 'words') {
-    titleSplit = title.split(' ').map((letter, l) => {
+    let wordSplit = title.split(' ')
+    titleSplit = wordSplit.map((letter, l) => {
       return (
         <motion.span variants={letterVariants} key={l}>
-          {letter}&nbsp;
+          {wordSplit.length !== l + 1 ? `${letter} ` : `${letter}`}
         </motion.span>
       )
     })
   }
 
   if (splitter === 'full') {
-      return (
-        <motion.span
+    return (
+      <motion.span
         initial={{
-          opacity: 0
+          opacity: 0,
         }}
         whileInView={{
-          opacity: 1
+          opacity: 1,
         }}
-        >
-          {title}
-        </motion.span>
-      )
+      >
+        {title}
+      </motion.span>
+    )
   }
 
   return (
