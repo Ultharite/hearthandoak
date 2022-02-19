@@ -46,7 +46,7 @@ export default function Home() {
 
         <Wordbounce
           className="newhero__slogan"
-          splitter="letters"
+          splitter="words"
           triggeronce={false}
           speed={0.2}
         >
