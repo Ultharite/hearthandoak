@@ -35,11 +35,12 @@ const Clipper = ({children, circular = false}) => {
     )
   }
 
+
   return (
     <section className="clipper" ref={clipRef}>
     
       <div className="clipper__inner">
-      <WordScroll caption="CAPTURE THE MOMENT">CAPTURE THE MOMENT</WordScroll>
+      <span className="clipper__caption"><span>CAPTURE </span><span>THE </span> <span>MOMENT</span></span>
         <motion.div className="clipper__child">
           <Image
             src="/Diana_Dan_Wedding-378-537c44f3.webp"
