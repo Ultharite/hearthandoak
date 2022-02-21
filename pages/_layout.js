@@ -53,8 +53,9 @@ const Layout = ({ children }) => {
               className="sitelogo"
               src="/hando-logo.webp"
               alt="Hearth &amp; Oak"
+              width="496" height="296"
             />
-            <img className="sitelogo-icon" alt="Hearth &amp; Oak" src="/hando-leaf.webp" />
+            <img className="sitelogo-icon" width="160" height="152" alt="Hearth &amp; Oak" src="/hando-leaf.webp" />
           </div>
           <Navigation />
         </header>

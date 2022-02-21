@@ -23,6 +23,14 @@ const Clipper = ({children, circular = false}) => {
   const clipValueOnePercent = useTransform(clipValueOneSpring, (v) => `polygon(0 0, ${v}% 0, ${v}% 100%, 0% 100%)`)
   const clipValueTwoPercent = useTransform(clipValueTwoSpring, (v) => `polygon(0 0, ${v}% 0, ${v}% 100%, 0% 100%)`)
 
+  const captionYValue = useTransform(clipEl, [0, 1], [0, 256])
+  const captionYSpring = useSpring(captionYValue, {stiffness: 400, damping: 64})
+
+  const gapValue = useTransform(clipEl, [0, 1], [2, 0])
+  const gapSpring = useSpring(gapValue, {stiffness: 400, damping: 64})
+  const gapGap = useTransform(gapValue, (g) => `${g}px`)
+
+
   const clipCircle = useTransform(circleSpring, (v) => `circle(${v}% at 50% 50%)`)
 
   if (circular == true) {
@@ -35,12 +43,16 @@ const Clipper = ({children, circular = false}) => {
     )
   }
 
+  
+
 
   return (
     <section className="clipper" ref={clipRef}>
     
       <div className="clipper__inner">
-      <span className="clipper__caption"><span>CAPTURE </span><span>THE </span> <span>MOMENT</span></span>
+      <motion.span className="clipper__caption" style={{
+        y: captionYSpring
+      }}><span>CAPTURE </span><span>THE </span> <span>MOMENT</span></motion.span>
         <motion.div className="clipper__child">
           <Image
             src="/Diana_Dan_Wedding-378-537c44f3.webp"

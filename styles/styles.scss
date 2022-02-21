@@ -4,8 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Spectral:ital,wght@0,400;0,700;1,400;1,700');
 
-@import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital@0;1&display=swap');
-
 :root {
   --display: 'Forum', serif;
   --basefont: 'Spectral', serif;
@@ -15,12 +13,9 @@
   --grey: #383834;
   --grey2: #272930;
   --gold: #e3bc8b;
-  //font-family: 'Spectral', serif;
+
   font-family: 'Spectral', serif;
   font-size: 16px;
-  //overflow-x: hidden;
-
-  //line-height: 1.68;
 
   --linewidth: min(60ch, 60rem);
 
@@ -28,12 +23,6 @@
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
   --shadowpop: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-}
-
-:root,
-html,
-body {
-  //overflow-x: hidden;
 }
 
 strong {
@@ -45,7 +34,6 @@ body {
   background-color: var(--light);
   -webkit-font-smoothing: antialiased;
   background-image: url('/wavecut.png');
-  //background-image: url('/vintage-speckles.png');
 }
 
 * {
@@ -108,6 +96,7 @@ h3 {
 .sitelogo {
   display: block;
   max-height: 8rem;
+  width: fit-content;
   transition: all 0.3s ease-in-out;
 }
 
@@ -142,27 +131,27 @@ h3 {
 
 button,
 .button {
-  padding: 0.875em 1em;
-  border: 1px solid var(--dark);
-  background: #ede9e6;
   align-self: center;
-  border-radius: 2rem;
-  font-weight: 400;
-  font-family: var(--basefont);
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 1px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s ease-in-out;
+  background-color: #ede9e6;
   background-image: linear-gradient(transparent 50%, var(--dark) 50%);
-  background-size: 100% 400%;
   background-position: 100% 0%;
   background-repeat: no-repeat;
+  background-size: 100% 400%;
+  border-radius: 2rem;
+  border: 1px solid var(--dark);
+  color: var(--dark);
   cursor: pointer;
   display: inline-block;
+  font-family: var(--basefont);
+  font-weight: 400;
+  letter-spacing: 1px;
+  overflow: hidden;
+  padding: 0.875em 1em;
+  position: relative;
   text-align: center;
-  color: var(--dark);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out;
 
   &:hover {
     color: var(--light);
@@ -1081,6 +1070,8 @@ select {
 .sitelogo-icon {
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  max-width: fit-content;
+  width: fit-content;
 }
 
 @keyframes headerfade {
